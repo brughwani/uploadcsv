@@ -1,15 +1,36 @@
-const axios = require('axios');
+const Airtable = require('airtable');
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
+  const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base('appoTE4TCM6nEPxJI');
+
   try {
-    const response = await axios.get('https://api.airtable.com/v0/appoTE4TCM6nEPxJI/Products', {
-      headers: {
-        'Authorization': `Bearer YOUR_API_KEY`, // Replace with your Airtable API key
-      },
-    });
-    res.status(200).json(response.data);
+    const categories = new Set(); // Using a Set to store unique categories
+
+    base('Products')
+      .select({
+        view: "Grid view", // You can use other views if needed
+      })
+      .eachPage(
+        function page(recordBatch, fetchNextPage) {
+          recordBatch.forEach(record => {
+            const category = record.get('Category');
+            if (category) {
+              categories.add(category); // Add category to Set to ensure uniqueness
+            }
+          });
+          fetchNextPage(); // Fetch the next page of records
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Failed to fetch data' });
+          } else {
+            // Convert Set to Array and return unique categories
+            res.status(200).json(Array.from(categories));
+          }
+        }
+      );
   } catch (error) {
-    console.error('Error fetching data from Airtable:', error);
-    res.status(500).json({ error: 'Error fetching data from Airtable' });
+    res.status(500).json({ error: 'Server error' });
   }
-}
+};
