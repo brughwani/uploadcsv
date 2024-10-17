@@ -8,7 +8,7 @@ const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.e
 module.exports = async (req, res) => {
   // Extract the fields from the request body
   const { firstName, lastName, role, phone, password, address, personalPhoneNumber, salary,} = req.body;
-
+console.log(req.body)
   // Combine the extracted fields into the data object
   const data = {
     "First Name": firstName,
@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
     "Salary": salary,
      // Add any additional fields from the request
   };
+  console.log(data)
 
   // Insert the data into the 'Employee' table
   base('Employee').create(data, {typecast: true}, function(err, record) {
