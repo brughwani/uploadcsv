@@ -6,6 +6,10 @@ const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.e
 
 // Define the Vercel function to handle the API request
 module.exports = async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
   // Extract the fields from the request body
   const { firstName, lastName, role, phone, password, address, personalPhoneNumber, salary,} = req.body;
 console.log(req.body)
