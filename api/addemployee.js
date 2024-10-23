@@ -59,7 +59,11 @@ module.exports = async (req, res) => {
     // If successful, send the ID of the created record as the response
     res.status(200).json({ id: record.getId() });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Detailed error:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
     res.status(500).json({ error: error.message || 'Internal Server Error' });
   }
 };
