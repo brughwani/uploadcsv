@@ -5,7 +5,7 @@ const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.e
 
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   
     if (req.method === 'OPTIONS') {
@@ -63,11 +63,7 @@ module.exports = async (req, res) => {
     res.status(200).json({ id: record.getId() });
   } catch (error) {
     
-    console.error('Detailed error:', {
-      message: error.message,
-      stack: error.stack,
-      name: error.name
-    });
+    
 
     res.status(500).json({ error: error.message || 'Internal Server Error' });
   }
