@@ -6,6 +6,20 @@ module.exports = async (req, res) => {
   // Get category from query parameters
   let category = req.query.category || null;
 
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  if (req.method !== 'GET') {
+    res.status(405).send('Method Not Allowed');
+    return;
+  }
+
   // Create filter formula based on whether category is provided
   let filterFormula = category ? `{Category} = "${category}"` : '';
 
