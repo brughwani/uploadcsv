@@ -44,24 +44,24 @@ module.exports = async (req, res) => {
 
         const data={
             fields:{
-                name,
-                phone,
-                complaint,
-                city,
-                pincode,
-                purchasedate,
-                warrantyexpirydate,
-                productname,
-                category,
-                address,
-                requesttype
+               'Customer Name': name,
+               'Phone Number': phone,
+               'Complaint': complaint,
+               'City': city,
+                'pincode':pincode,
+                'purchase date':purchasedate,
+               'warranty expiry date': warrantyexpirydate,
+               'product name': productname,
+              'category':  category,
+               'address': address,
+              'Request type':  requesttype
             }
         }
 
           console.log('Data to be inserted:', data);
 
     // Insert the data into the 'Employee' table
-    const record = await base('Service').create(data, {typecast: true});
+    const record = await base('Service').create(req.body.fields, {typecast: true});
 
     // If successful, send the ID of the created record as the response
     res.status(200).json({ id: record.getId() });
