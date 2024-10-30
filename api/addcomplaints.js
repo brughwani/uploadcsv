@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
           'Complaint':complaint,
           'City':city,
           'pincode':pincode,
-          'purchase date':purchasedate,
+          'Purchase Date':purchasedate,
           'warranty expiry date':warrantyexpirydate,
           'product name':productname,
           'category':category,
