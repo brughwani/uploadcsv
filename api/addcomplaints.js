@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
         {
           'Customer Name':name,
           'Phone Number':phone,
-          'Complaint':complaint,
+         
           'City':city,
           'pincode':pincode,
           'Purchase Date':purchasedate,
@@ -38,7 +38,8 @@ module.exports = async (req, res) => {
           'product name':productname,
           'category':category,
           'address':address,
-          'Request type':requesttype
+          'Request type':requesttype,
+          'Complaint':complaint,
 
         }= req.body.fields;
 
