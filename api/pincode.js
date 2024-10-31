@@ -1,6 +1,7 @@
 // /api/getCityByPincode.js
 
 const fetch = require('node-fetch');
+const https = require('https');
 
 module.exports = async (req, res) => {
     //const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
