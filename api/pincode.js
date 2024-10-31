@@ -7,6 +7,9 @@ module.exports = async (req, res) => {
 
   // Get category from query parameters
 //  let pin = req.query.pincode || null;
+const agent = new https.Agent({
+  keepAlive: true, // Enable connection reuse
+});
 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -17,6 +20,7 @@ module.exports = async (req, res) => {
     res.status(204).end();
     return;
   }
+
 
   if (req.method !== 'GET') {
     res.status(405).send('Method Not Allowed');
@@ -32,7 +36,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+    const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`,{ agent });
     const data = await response.json();
 
     if (data[0].Status !== "Success") {
