@@ -49,10 +49,12 @@ module.exports = async (req, res) => {
       "address": req.body.fields['address'],
       "pincode": req.body.fields['pincode'],
       "City": req.body.fields['City'],
-      "Purchase Date": req.body.fields['Purchase Date'],
-      "warranty expiry date": req.body.fields['warranty expiry date'],
-      "category": req.body.fields['category'],
+      
       "product name": req.body.fields['product name'],
+          "category": req.body.fields['category'],
+     "Purchase Date": req.body.fields['Purchase Date'],
+      "warranty expiry date": req.body.fields['warranty expiry date'],
+  
      
       "Complain/Remark": req.body.fields['Complain/Remark'],
       "Request Type": req.body.fields['Request Type'],
