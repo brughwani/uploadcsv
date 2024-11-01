@@ -28,9 +28,9 @@ module.exports = async (req, res) => {
 
         const 
         {
-         
-          'Phone Number':phone,
           'Customer Name':name,
+          'Phone Number':phone,
+         
           'address':address,
           'Pincode':pincode,
           'City':city,
@@ -38,24 +38,25 @@ module.exports = async (req, res) => {
           'warranty expiry date':warrantyexpirydate,
           'product name':productname,
           'category':category,
-          'Request type':requesttype,
+         
           'Complaint':complaint,
-
+          'Request type':requesttype,
         }= req.body.fields;
 
         const data={
+          "Customer name": name,
       "Phone Number":phone,
-      "Customer name": name,
+     
       "address": address,
+      "pincode": pincode,
+      "City": city,
       "Purchase Date": purchasedate,
       "warranty expiry date": warrantyexpirydate,
-      "City": city,
-      "pincode": pincode,
       "category": category,
       "product name": productname,
-      "Request Type": requesttype,
+     
       "Complain/Remark": complaint,
-  
+      "Request Type": requesttype,
         }
 
           console.log('Data to be inserted:', data);
