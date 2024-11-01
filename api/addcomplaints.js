@@ -49,9 +49,9 @@ module.exports = async (req, res) => {
       "address": req.body.fields['address'],
       "pincode": req.body.fields['pincode'],
       "City": req.body.fields['City'],
-      
+      "category": req.body.fields['category'],
       "product name": req.body.fields['product name'],
-          "category": req.body.fields['category'],
+        
      "Purchase Date": req.body.fields['Purchase Date'],
       "warranty expiry date": req.body.fields['warranty expiry date'],
   
@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
           console.log('Data to be inserted:', data);
 
     // Insert the data into the 'Employee' table
-    const record = await base('Service').create(data, {typecast: true});
+    const record = await base('Service').create(req.body.fields, {typecast: true});
 
     // If successful, send the ID of the created record as the response
     res.status(200).json({ id: record.getId() });
