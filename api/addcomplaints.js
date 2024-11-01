@@ -36,9 +36,9 @@ module.exports = async (req, res) => {
           'City':city,
           'Purchase Date':purchasedate,
           'warranty expiry date':warrantyexpirydate,
-          'product name':productname,
-          'category':category,
          
+          'category':category,
+          'product name':productname,
           'Complaint':complaint,
           'Request type':requesttype,
         }= req.body.fields;
