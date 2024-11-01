@@ -26,37 +26,36 @@ module.exports = async (req, res) => {
           throw new Error('Missing fields object in request body');
         }
 
-        const 
-        {
-          'Customer Name':name,
-          'Phone Number':phone,
+        // const 
+        // {
+        //   'Customer Name':name,
+        //   'Phone Number':phone,
          
-          'address':address,
-          'Pincode':pincode,
-          'City':city,
-          'Purchase Date':purchasedate,
-          'warranty expiry date':warrantyexpirydate,
+        //   'address':address,
+        //   'Pincode':pincode,
+        //   'City':city,
+        //   'Purchase Date':purchasedate,
+        //   'warranty expiry date':warrantyexpirydate,
          
-          'category':category,
-          'product name':productname,
-          'Complaint':complaint,
-          'Request type':requesttype,
-        }= req.body.fields;
+        //   'category':category,
+        //   'product name':productname,
+        //   'Complaint':complaint,
+        //   'Request Type':requesttype,
+        // }= req.body.fields;
 
         const data={
-          "Customer name": name,
-      "Phone Number":phone,
+          "Customer name": req.body.fields['Customer Name'],
+      "Phone Number":req.body.fields['Phone Number'],
+      "address": req.body.fields['address'],
+      "pincode": req.body.fields['pincode'],
+      "City": req.body.fields['City'],
+      "Purchase Date": req.body.fields['Purchase Date'],
+      "warranty expiry date": req.body.fields['warranty expiry date'],
+      "category": req.body.fields['category'],
+      "product name": req.body.fields['product name'],
      
-      "address": address,
-      "pincode": pincode,
-      "City": city,
-      "Purchase Date": purchasedate,
-      "warranty expiry date": warrantyexpirydate,
-      "category": category,
-      "product name": productname,
-     
-      "Complain/Remark": complaint,
-      "Request Type": requesttype,
+      "Complain/Remark": req.body.fields['Complain/Remark'],
+      "Request Type": req.body.fields['Request Type'],
         }
 
           console.log('Data to be inserted:', data);
