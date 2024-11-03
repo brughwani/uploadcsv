@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
         // }= req.body.fields;
 
         const data={
-          "Customer name": req.body.fields['Customer Name'],
+          "Customer name": req.body.fields['Customer name'],
       "Phone Number":req.body.fields['Phone Number'],
       "address": req.body.fields['address'],
       "pincode": req.body.fields['pincode'],
