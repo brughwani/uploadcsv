@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
   }
   try {
     const locations = new Set(); // Using a Set to store unique categories
-    let offset = 50;
+    let offset = 1;
 
 const getRecords = async () => {
     
