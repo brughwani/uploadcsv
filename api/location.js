@@ -30,7 +30,7 @@ const getRecords = async () => {
         view: "Grid view", // You can use other views if needed
         pageSize:100,
         offset:offset
-      }).all
+      }).firstPage();
 
       response.forEach(record => {
             const location = record.get('locality');
