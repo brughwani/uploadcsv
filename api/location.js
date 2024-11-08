@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
     const locations = new Set(); // Using a Set to store unique categories
     let offset = null;
 
-const getrecords = async () => {
+const getRecords = async () => {
     
 
    const response = await base('Dealer')
