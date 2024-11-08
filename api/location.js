@@ -33,6 +33,7 @@ module.exports = async (req, res) => {
               locations.add(location); // Add category to Set to ensure uniqueness
             }
           });
+
           fetchNextPage(); // Fetch the next page of records
         },
         function done(err) {

@@ -20,14 +20,14 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Create filter formula based on whether category is provided
+  // Create filter formula based on whether locality is provided
   let filterFormula = loc ? `{locality} = "${loc}"` : '';
 
   try {
     const records = [];
     base('Dealer')
       .select({
-        filterByFormula: filterFormula, // Apply filter only if category exists
+        filterByFormula: filterFormula, // Apply filter only if locality exists
         view: "Grid view",
       })
       .eachPage(
@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
             records.push({
               id: record.id,
               dealerName: record.get('Dealer Name'),
-              location: record.get('locality'), // Get category for each product
+              location: record.get('locality'), // Get locality for each dealer
             });
           });
           fetchNextPage(); // Fetch the next page of records
