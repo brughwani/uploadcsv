@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
 
   // Get category from query parameters
-  let category = req.query.category || null;
+  let loc = req.query.loc || null;
 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
