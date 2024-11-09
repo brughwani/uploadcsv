@@ -21,39 +21,45 @@ module.exports = async (req, res) => {
   }
 
   // Create filter formula based on whether locality is provided
-  let filterFormula = loc ? `SEARCH("${loc}", {locality})` : '';
+  let filterFormula = loc ? `{locality} = "${loc}"` : '';
 
   try {
     const records = [];
-    base('Dealer')
-      .select({
-        filterByFormula: filterFormula,
-         // Apply filter only if locality exists
-        view: "Grid view",
-      })
-      .eachPage(
-        function page(recordBatch, fetchNextPage) {
-          recordBatch.forEach(record => {
-            records.push({
-              id: record.id,
-              dealerName: record.get('Dealer name'),
-              location: record.get('locality'), // Get locality for each dealer
+    
+    // Convert the Airtable query to a Promise
+    await new Promise((resolve, reject) => {
+      base('Dealer')
+        .select({
+          filterByFormula: filterFormula,
+          view: "Grid view",
+        })
+        .eachPage(
+          function page(recordBatch, fetchNextPage) {
+            recordBatch.forEach(record => {
+              records.push({
+                id: record.id,
+                dealerName: record.get('Dealer name'),
+                location: record.get('locality'),
+              });
             });
-          });
-          fetchNextPage(); // Fetch the next page of records
-        },
-        function done(err) {
-          if (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Failed to fetch data' });
-          } else {
-            res.status(200).json(records); // Return the array of product records
+            fetchNextPage();
+          },
+          function done(err) {
+            if (err) {
+              reject(err);
+            } else {
+              resolve();
+            }
           }
-        }
-      );
+        );
+    });
+
+    // Now we can safely return the records
+    console.log(records);
+    res.status(200).json(records);
+    
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Server error' });
   }
-  console.log(records);
 };
-
