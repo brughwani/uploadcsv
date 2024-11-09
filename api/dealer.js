@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     console.log('Filtering for locality:', loc);
     
     // Create filter formula - note the LOWER() function for case-insensitive comparison
-    let filterFormula =`{locality}) = "${loc}"`;
+    let filterFormula =`{locality} = "${loc}"`;
     
   
     // Convert the Airtable query to a Promise
