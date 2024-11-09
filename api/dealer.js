@@ -21,11 +21,17 @@ module.exports = async (req, res) => {
   }
 
   // Create filter formula based on whether locality is provided
-  let filterFormula = loc ? `{locality} = "${loc}"` : '';
+ // let filterFormula = loc ? `{locality} = "${loc}"` : '';
 
+ 
   try {
     const records = [];
+    console.log('Filtering for locality:', loc);
     
+    // Create filter formula - note the LOWER() function for case-insensitive comparison
+    let filterFormula = loc ? `LOWER({Locality}) = LOWER("${loc}")` : '';
+    
+  
     // Convert the Airtable query to a Promise
     await new Promise((resolve, reject) => {
       base('Dealer')
