@@ -3,7 +3,7 @@ const Airtable = require('airtable');
 module.exports = async (req, res) => {
   const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
 
-  // Get category from query parameters
+  // Get locality from query parameters
   let loc = req.query.loc || null;
 
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   }
 
   // Create filter formula based on whether locality is provided
-  let filterFormula = loc ? `{locality} = "${loc}"` : '';
+  let filterFormula = loc ? `SEARCH("${loc}", {locality})` : '';
 
   try {
     const records = [];
@@ -54,4 +54,6 @@ module.exports = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
+  console.log(records);
 };
+
