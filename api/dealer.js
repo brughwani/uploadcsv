@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
           recordBatch.forEach(record => {
             records.push({
               id: record.id,
-              dealerName: record.get('Dealer Name'),
+              dealerName: record.get('Dealer name'),
               location: record.get('locality'), // Get locality for each dealer
             });
           });
