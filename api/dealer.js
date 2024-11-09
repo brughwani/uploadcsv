@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   }
 
   // Create filter formula based on whether locality is provided
-  let filterFormula = loc ? `'locality = "${loc}"' `: '';
+  let filterFormula = loc ? 'locality = "${loc}"' : '';
 
   try {
     const records = [];
