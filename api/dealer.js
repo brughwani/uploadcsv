@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
 
   // Get locality from query parameters
-  let loc = req.query.loc || null;
+  let loc = req.query.locality || null;
 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     console.log('Filtering for locality:', loc);
     
     // Create filter formula - note the LOWER() function for case-insensitive comparison
-    let filterFormula =`LOWER({locality}) = LOWER("${loc}")`;
+    let filterFormula =`{locality}) = "${loc}"`;
     
   
     // Convert the Airtable query to a Promise
