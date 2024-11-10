@@ -22,24 +22,32 @@ module.exports = async (req, res) => {
     res.status(405).send('Method Not Allowed');
     return;
   }
-  try {
-    // Perform the select query to get all employee names
-    const records = await base('karigar').select({
-      fields: ['First Name'],  // Only fetch the 'name' field
-      view: "Grid view"
-    }).all();  // Use `.all()` to fetch all records
+ 
 
     // Process the retrieved records to get only names
-    const employeeNames = records.map(record => record.get('First Name'));
+      // Assume roleName is passed as a query parameter
 
-    // Check if any records are found
-    if (employeeNames.length > 0) {
-      res.status(200).json(employeeNames);  // Send the names as a JSON response
-    } else {
-      res.status(404).json({ message: 'No employee records found' });
+    try {
+      // Fetch employees with the specified role directly from the Employee table
+      const employees = await base('Employee').select({
+        filterByFormula: `{Role} = 'Karigar'`,  // Filter directly on the Role field
+        view: "Grid view",
+        fields: ['First Name']
+      }).all();
+  
+      // Process the retrieved employee records
+      const result = employees.map(employee => ({
+        id: employee.id,
+        ...employee.fields  // Include all employee fields, or specify fields as needed
+      }));
+  
+      if (result.length > 0) {
+        res.status(200).json(result);  // Send the filtered employee data as JSON response
+      } else {
+        res.status(404).json({ message: 'No employees found with the specified role' });
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error fetching employee data from Airtable');
     }
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error fetching employee names from Airtable');
-  }
-};
+  };
