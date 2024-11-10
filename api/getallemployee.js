@@ -6,6 +6,21 @@ const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process
 
 // Define the Vercel function to handle the API request
 module.exports = async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  if (req.method !== 'GET') {
+    res.status(405).send('Method Not Allowed');
+    return;
+  }
   try {
     // Define the specific fields you want to retrieve, e.g., 5 or 10 fields
     const selectedFields = ['First Name', 'Last Name', 'empcode', 'Phone', 'salary', 'address', 'personal phone number', 'Role'];  // Add up to 10 fields here
