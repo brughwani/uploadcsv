@@ -23,7 +23,15 @@ module.exports = async (req, res) => {
   }
   try {
     // Define the specific fields you want to retrieve, e.g., 5 or 10 fields
-    const selectedFields = ['First Name', 'Last Name', 'empcode', 'Phone', 'salary', 'address', 'personal phone number', 'Role'];  // Add up to 10 fields here
+   // const selectedFields = ['First Name', 'Last Name', 'empcode', 'Phone', 'salary', 'address', 'personal phone number', 'Role'];  // Add up to 10 fields here
+   const selectedFields = req.query['fields[]']; // 'fields[]' is the key used in the query
+
+   if (!selectedFields || selectedFields.length === 0) {
+    return res.status(400).json({ message: 'No fields selected' });
+  }
+  const fieldsArray = Array.isArray(selectedFields) ? selectedFields : [selectedFields];
+
+
 
     // Perform the select query with the specified fields
     const records = await base('Employee').select({
@@ -31,10 +39,12 @@ module.exports = async (req, res) => {
       view: "Grid view"
     }).all();  // Use `.all()` to fetch all records
 
+
+
     // Process the retrieved records to include only the selected fields
     const employeesWithSelectedFields = records.map(record => {
       const selectedData = {};
-      selectedFields.forEach(field => {
+      fieldsArray.forEach(field => {
         selectedData[field] = record.get(field);
       });
       return {
