@@ -39,7 +39,8 @@ module.exports = async (req, res) => {
   //     // Single field
   //     selectedFields = [selectedFields];
   //   }
-  
+  console.log(selectedFields);
+  console.log(typeof selectedFields);
   if (typeof selectedFields === 'string') {
     // Attempt to parse JSON if it looks like an array
     if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
