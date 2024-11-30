@@ -52,21 +52,20 @@ module.exports = async (req, res) => {
 
 
 
-    // Process the retrieved records to include only the selected fields
+    // Process and return the response
     const employeesWithSelectedFields = records.map(record => {
       const selectedData = {};
-      fieldsArray.forEach(field => {
+      selectedFields.forEach(field => {
         selectedData[field] = record.get(field);
       });
       return {
         id: record.id,
-        ...selectedData
+        ...selectedData,
       };
     });
 
-    // Check if any records are found
     if (employeesWithSelectedFields.length > 0) {
-      res.status(200).json(employeesWithSelectedFields);  // Send the selected employee data as JSON response
+      res.status(200).json(employeesWithSelectedFields);
     } else {
       res.status(404).json({ message: 'No employee records found' });
     }
@@ -75,3 +74,26 @@ module.exports = async (req, res) => {
     res.status(500).send('Error fetching employee records from Airtable');
   }
 };
+    // Process the retrieved records to include only the selected fields
+//     const employeesWithSelectedFields = records.map(record => {
+//       const selectedData = {};
+//       fieldsArray.forEach(field => {
+//         selectedData[field] = record.get(field);
+//       });
+//       return {
+//         id: record.id,
+//         ...selectedData
+//       };
+//     });
+
+//     // Check if any records are found
+//     if (employeesWithSelectedFields.length > 0) {
+//       res.status(200).json(employeesWithSelectedFields);  // Send the selected employee data as JSON response
+//     } else {
+//       res.status(404).json({ message: 'No employee records found' });
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send('Error fetching employee records from Airtable');
+//   }
+// };
