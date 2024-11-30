@@ -40,17 +40,35 @@ module.exports = async (req, res) => {
   //     selectedFields = [selectedFields];
   //   }
   console.log(selectedFields);
+  // console.log(typeof selectedFields);
+  // if (typeof selectedFields === 'string') {
+  //   // Attempt to parse JSON if it looks like an array
+  //   if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
+  //    // selectedFields = JSON.parse(selectedFields);
+  //    selectedFields = selectedFields.slice(1, -1).split(',').map(field => field.trim());
+
+  //   } else {
+  //     // Treat as a single field
+  //     selectedFields = [selectedFields];
+  //   }
+  // }
   console.log(typeof selectedFields);
   if (typeof selectedFields === 'string') {
-    // Attempt to parse JSON if it looks like an array
-    if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
+    try {
+      // Attempt to parse JSON
       selectedFields = JSON.parse(selectedFields);
-    } else {
-      // Treat as a single field
-      selectedFields = [selectedFields];
+    } catch (error) {
+      // If parsing fails, check if the string starts and ends with square brackets
+      if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
+        // Remove the square brackets and split the string into an array
+        selectedFields = selectedFields.slice(1, -1).split(',').map(field => field.trim());
+      } else {
+        // Treat as a single field
+        selectedFields = [selectedFields];
+      }
     }
   }
-
+  console.log(selectedFields);
 
     // Perform the select query with the specified fields
     const records = await base('Employee').select({
