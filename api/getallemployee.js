@@ -57,11 +57,13 @@ module.exports = async (req, res) => {
     try {
       // Attempt to parse JSON
       selectedFields = JSON.parse(selectedFields);
+
     } catch (error) {
       // If parsing fails, check if the string starts and ends with square brackets
       if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
         // Remove the square brackets and split the string into an array
         selectedFields = selectedFields.slice(1, -1).split(',').map(field => field.trim());
+        
       } else {
         // Treat as a single field
         selectedFields = [selectedFields];
