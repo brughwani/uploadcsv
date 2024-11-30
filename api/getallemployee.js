@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     res.status(405).send('Method Not Allowed');
     return;
   }
-  try {
+  
     // Define the specific fields you want to retrieve, e.g., 5 or 10 fields
    // const selectedFields = ['First Name', 'Last Name', 'empcode', 'Phone', 'salary', 'address', 'personal phone number', 'Role'];  // Add up to 10 fields here
    const selectedFields = req.query['fields[]']; // 'fields[]' is the key used in the query
@@ -31,10 +31,9 @@ module.exports = async (req, res) => {
   }
   const fieldsArray = Array.isArray(selectedFields) ? selectedFields : [selectedFields];
 
-  if (typeof selectedFields === 'string') {
+  if (typeof selectedFields === 'array') {
     // Convert a single field or a stringified array into an array
-    if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
-      // Stringified array, e.g., "[Address, Salary]"
+   
       selectedFields = JSON.parse(selectedFields);
     } else {
       // Single field
@@ -51,7 +50,8 @@ module.exports = async (req, res) => {
     }).all();  // Use `.all()` to fetch all records
 
 
-
+try
+{
     // Process and return the response
     const employeesWithSelectedFields = records.map(record => {
       const selectedData = {};
@@ -73,7 +73,7 @@ module.exports = async (req, res) => {
     console.error(err);
     res.status(500).send('Error fetching employee records from Airtable');
   }
-};
+
     // Process the retrieved records to include only the selected fields
 //     const employeesWithSelectedFields = records.map(record => {
 //       const selectedData = {};
