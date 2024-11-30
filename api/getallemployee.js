@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
       // Single field
       selectedFields = [selectedFields];
     }
-  }
+  
 
 
 
@@ -97,3 +97,4 @@ try
 //     res.status(500).send('Error fetching employee records from Airtable');
 //   }
 // };
+}
