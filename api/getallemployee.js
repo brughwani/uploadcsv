@@ -29,18 +29,26 @@ module.exports = async (req, res) => {
    if (!selectedFields || selectedFields.length === 0) {
     return res.status(400).json({ message: 'No fields selected' });
   }
-  const fieldsArray = Array.isArray(selectedFields) ? selectedFields : [selectedFields];
+//  const fieldsArray = Array.isArray(selectedFields) ? selectedFields : [selectedFields];
 
-  if (typeof selectedFields === 'array') {
-    // Convert a single field or a stringified array into an array
+  // if (typeof selectedFields === 'array') {
+  //   // Convert a single field or a stringified array into an array
    
+  //     selectedFields = JSON.parse(selectedFields);
+  //   } else {
+  //     // Single field
+  //     selectedFields = [selectedFields];
+  //   }
+  
+  if (typeof selectedFields === 'string') {
+    // Attempt to parse JSON if it looks like an array
+    if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
       selectedFields = JSON.parse(selectedFields);
     } else {
-      // Single field
+      // Treat as a single field
       selectedFields = [selectedFields];
     }
-  
-
+  }
 
 
     // Perform the select query with the specified fields
