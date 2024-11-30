@@ -31,6 +31,17 @@ module.exports = async (req, res) => {
   }
   const fieldsArray = Array.isArray(selectedFields) ? selectedFields : [selectedFields];
 
+  if (typeof selectedFields === 'string') {
+    // Convert a single field or a stringified array into an array
+    if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
+      // Stringified array, e.g., "[Address, Salary]"
+      selectedFields = JSON.parse(selectedFields);
+    } else {
+      // Single field
+      selectedFields = [selectedFields];
+    }
+  }
+
 
 
     // Perform the select query with the specified fields
