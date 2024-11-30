@@ -26,7 +26,10 @@ module.exports = async (req, res) => {
    // const selectedFields = ['First Name', 'Last Name', 'empcode', 'Phone', 'salary', 'address', 'personal phone number', 'Role'];  // Add up to 10 fields here
    //let selectedFields = req.query['fields[]']; // 'fields[]' is the key used in the query
    let selectedFields = req.query['fields[]'] ? req.query['fields[]'].split(',') : [];
+<<<<<<< HEAD
    selectedFields = selectedFields.map(field => field.trim().replace(/[\[\]"']/g, ''));
+=======
+>>>>>>> d2072a5ffc0a53eb7fc5a76cfa3aa16b04d94799
 
    if (!selectedFields || selectedFields.length === 0) {
     return res.status(400).json({ message: 'No fields selected' });
