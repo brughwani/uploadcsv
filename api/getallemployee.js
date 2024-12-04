@@ -98,6 +98,7 @@ try
     });
 
     if (employeesWithSelectedFields.length > 0) {
+    
       res.status(200).json(employeesWithSelectedFields);
     } else {
       res.status(404).json({ message: 'No employee records found' });

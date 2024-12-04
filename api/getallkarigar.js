@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
       const employees = await base('Employee').select({
         filterByFormula: `{Role} = 'Karigar'`,  // Filter directly on the Role field
         view: "Grid view",
-        fields: ['First Name']
+        fields: ['First name']
       }).all();
   
       // Process the retrieved employee records
