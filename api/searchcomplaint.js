@@ -16,21 +16,40 @@ module.exports = async (req, res) => {
     let productname=req.query.productname;
     let allotment=req.query.allotment;
     let servicetype=req.query.servicetype;
+    let sourceby=req.query.sourceby;
 
+
+    let filterFormula = `AND(
+      ${fromdate ? `IS_AFTER({date and time of complain}, "${fromdate}")` : `TRUE()`}, 
+      ${todate ? `IS_BEFORE({date and time of complain}, "${todate}")` : `TRUE()`}, 
+      OR(
+        ${name ? `SEARCH("${name}", {Name}) > 0` : `FALSE()`},
+        ${phone ? `SEARCH("${phone}", {Phone Number}) > 0` : `FALSE()`},
+        ${location ? `SEARCH("${location}", {Location}) > 0` : `FALSE()`},
+        ${dealer && dealer !== 'Select an option'  ? `SEARCH("${dealer}", {Dealer}) > 0` : `FALSE()`},
+        ${status ? `SEARCH("${status}", {Status}) > 0` : `FALSE()`},
+        ${productcategory ? `SEARCH("${productcategory}", {product category}) > 0` : `FALSE()`},
+        ${productname ? `SEARCH("${productname}", {product name}) > 0` : `FALSE()`},
+        ${allotment ? `SEARCH("${allotment}", {Allotted to}) > 0` : `FALSE()`},
+        ${servicetype ? `SEARCH("${servicetype}", {Service type}) > 0` : `FALSE()`},
+        ${sourceby  && sourceby !== 'Select an option' ? `SEARCH("${sourceby}", {Source by}) > 0` : `FALSE()}`}
+      )
+    )`;
     // Create filter formula based on whether category is provided
-    let filterFormula = `AND(IS_AFTER({date and time of complain}, "${fromdate}"), 
-  IS_BEFORE({date and time of complain}, "${todate}"), 
-  OR(
-    SEARCH("${location}", {Location}) > 0, 
-    SEARCH("${name}", {Name}) > 0,
-    SEARCH("${dealer}", {Dealer}) > 0,
-    SEARCH("${phone}", {Phone number}) > 0,
-    SEARCH("${status}", {Status}) > 0,
-    SEARCH("${productcategory}", {product category}) > 0,
-    SEARCH("${productname}", {product name}) > 0,
-    SEARCH("${allotment}", {Allotted to}) > 0,
-    SEARCH("${servicetype}", {Service type}) > 0
-  ))` 
+  //   let filterFormula = `AND(IS_AFTER({date and time of complain}, "${fromdate}"), 
+  // IS_BEFORE({date and time of complain}, "${todate}"), 
+  // OR(
+    
+  //   SEARCH("${name}", {Name}) > 0,
+  //   SEARCH("${phone}", {Phone Number}) > 0,
+  //   SEARCH("${location}", {Location}) > 0, 
+  //   SEARCH("${dealer}", {Dealer}) > 0,
+  //   SEARCH("${status}", {Status}) > 0,
+  //   SEARCH("${productcategory}", {product category}) > 0,
+  //   SEARCH("${productname}", {product name}) > 0,
+  //   SEARCH("${allotment}", {Allotted to}) > 0,
+  //   SEARCH("${servicetype}", {Service type}) > 0
+  // ))` 
   try {
     // Perform the select query with dynamic field filtering using the Airtable API
     const records = await base('admin').select({
