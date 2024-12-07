@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
     if (phone) {
         filterFormulaParts.push(`SEARCH("${phone}", {Phone Number}) > 0`);
     }
-    if (location) {
+    if (location && location !== 'Select a location') {
         filterFormulaParts.push(`SEARCH("${location}", {Location}) > 0`);
     }
     if (dealer && dealer !== 'Select a dealer') {
@@ -44,13 +44,13 @@ module.exports = async (req, res) => {
     if (status) {
         filterFormulaParts.push(`SEARCH("${status}", {Status}) > 0`);
     }
-    if (productcategory) {
-        filterFormulaParts.push(`SEARCH("${productcategory}", {product category}) > 0`);
+    if (productcategory && productcategory !== 'Select a category') {
+        filterFormulaParts.push(`SEARCH("${productcategory}", {category}) > 0`);
     }
-    if (productname) {
+    if (productname && productname !== 'Select a product') {
         filterFormulaParts.push(`SEARCH("${productname}", {product name}) > 0`);
     }
-    if (allotment) {
+    if (allotment && allotment !== 'Select an employee') {
         filterFormulaParts.push(`SEARCH("${allotment}", {Allotted to}) > 0`);
     }
     if (servicetype) {
@@ -82,9 +82,9 @@ module.exports = async (req, res) => {
                 Status: record.get('Status'),
                 "complain type": record.get("complain type"),
                 "Date and time of complain": record.get('date and time of complain'),
-                "Product category": record.get('product category'),
+                "Product category": record.get('category'),
                 "Product name": record.get('product name'),
-                "Allotted to": record.get('Allotted to'),
+                "Allotted to": record.get('allotted to'),
                 "Service type": record.get('Request type'),
             }));
 
