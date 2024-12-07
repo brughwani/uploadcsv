@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
         ${name ? `SEARCH("${name}", {Name}) > 0` : `FALSE()`},
         ${phone ? `SEARCH("${phone}", {Phone Number}) > 0` : `FALSE()`},
         ${location ? `SEARCH("${location}", {Location}) > 0` : `FALSE()`},
-        ${dealer && dealer !== 'Select an option'  ? `SEARCH("${dealer}", {Dealer}) > 0` : `FALSE()`},
+        ${dealer && dealer !== 'Select a dealer'  ? `SEARCH("${dealer}", {Dealer}) > 0` : `FALSE()`},
         ${status ? `SEARCH("${status}", {Status}) > 0` : `FALSE()`},
         ${productcategory ? `SEARCH("${productcategory}", {product category}) > 0` : `FALSE()`},
         ${productname ? `SEARCH("${productname}", {product name}) > 0` : `FALSE()`},
