@@ -82,10 +82,10 @@ module.exports = async (req, res) => {
                 Status: record.get('Status'),
                 "complain type": record.get("complain type"),
                 "date and time of complain": record.get('date and time of complain'),
-                "category": record.get('category'),
-                "product name": record.get('product name'),
-                "allotted to": record.get('allotted to'),
-                "Service type": record.get('Request type'),
+                productcategory: record.get('category'),
+                productname: record.get('product name'),
+                allotment: record.get('allotted to'),
+                servicetype: record.get('Request type'),
             }));
 
             res.status(200).json(retrievedRecords);
