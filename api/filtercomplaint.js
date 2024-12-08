@@ -142,13 +142,13 @@ module.exports = async (req, res) => {
         serviceFilterParts.push(`IS_BEFORE({date and time of complain}, "${todate}")`);
     }
     if (name) {
-        serviceFilterParts.push(`SEARCH("${name}", {Name}) > 0`);
+        serviceFilterParts.push(`SEARCH("${name}", {Customer name}) > 0`);
     }
     if (phone) {
         serviceFilterParts.push(`SEARCH("${phone}", {Phone Number}) > 0`);
     }
     if (location && location !== 'Select a location') {
-        serviceFilterParts.push(`SEARCH("${location}", {Location}) > 0`);
+        serviceFilterParts.push(`SEARCH("${location}", {City}) > 0`);
     }
     if (dealer && dealer !== 'Select a dealer') {
         serviceFilterParts.push(`SEARCH("${dealer}", {Dealer}) > 0`);
@@ -206,6 +206,7 @@ module.exports = async (req, res) => {
             productcategory: record.get('category'),
             productname: record.get('product name'),
             servicetype: record.get('Request type'),
+            "complain":record.get("Complain/Remark")
         }));
 
         const retrievedAdminRecords = adminRecords.map(record => ({
