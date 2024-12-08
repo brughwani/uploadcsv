@@ -215,7 +215,6 @@ module.exports = async (req, res) => {
         // Fetch records from the Service table
         const serviceRecords = await base('Service').select({
             filterByFormula: serviceFilterFormula,
-            maxRecords: 3,
             view: "Grid view",
         }).all();
 
