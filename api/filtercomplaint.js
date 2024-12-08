@@ -207,7 +207,7 @@ module.exports = async (req, res) => {
       }
       
       // Use OR operator to combine filter parts
-      const serviceFilterFormula = serviceFilterParts.length > 0 ? `OR(${serviceFilterParts.join(', ')})` : '';
+      const serviceFilterFormula = serviceFilterParts.length > 0 ? `AND(${serviceFilterParts.join(', ')})` : '';
       const adminFilterFormula = adminFilterParts.length > 0 ? `OR(${adminFilterParts.join(', ')})` : '';
       
 
