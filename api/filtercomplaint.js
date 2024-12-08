@@ -195,8 +195,7 @@ module.exports = async (req, res) => {
 
         // Combine data from both tables
         const retrievedServiceRecords = serviceRecords.map(record => ({
-            id: record.getId(),
-            compcode: record.get('Complain Number'),
+            id: record.get('Service Request ID'),
             Phone: record.get('Phone Number'),
             Name: record.get('Customer Name'),
             Dealer: record.get('Dealer'),
@@ -210,19 +209,51 @@ module.exports = async (req, res) => {
         }));
 
         const retrievedAdminRecords = adminRecords.map(record => ({
-            id: record.getId(),
+            id: record.get('Service Request ID'),
             allotment: record.get('allotted to'),
         }));
 
-        // Combine both records into a single response
-        const combinedRecords = {
-            serviceRecords: retrievedServiceRecords,
-            adminRecords: retrievedAdminRecords,
-        };
+    //     // Combine both records into a single response
+    //     const combinedRecords = {
+    //         serviceRecords: retrievedServiceRecords,
+    //         adminRecords: retrievedAdminRecords,
+    //     };
 
-        res.status(200).json(combinedRecords);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error fetching records from Airtable');
+    //     res.status(200).json(combinedRecords);
+    // } catch (err) {
+    //     console.error(err);
+    //     res.status(500).send('Error fetching records from Airtable');
+    // }
+    const matchedRecords = serviceData.map(service => {
+        const adminRecord = adminData.find(admin => admin.serviceid === service.serviceid);
+        if (adminRecord) {
+            return {
+                serviceid: service.serviceid,
+                Phone: service.Phone,
+                Name: service.Name,
+                Dealer: service.Dealer,
+                Location: service.Location,
+                Status: service.Status,
+                "date and time of complain": service["date and time of complain"],
+                productcategory: service.productcategory,
+                servicetype: service.servicetype,
+                productname: service.productname,
+                allotment: adminRecord.allotment, // Extract 'Allotted to' from Admin table
+            };
+        }
+        return null;
+    }).filter(record => record !== null); // Remove null values (non-matching records)
+
+    if (matchedRecords.length > 0) {
+        res.status(200).json({
+            message: 'Matched records based on serviceid',
+            matchedRecords,
+        });
+    } else {
+        res.status(404).json({ message: 'No matching serviceid found between tables' });
     }
+} catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching records from Airtable');
+}
 };
