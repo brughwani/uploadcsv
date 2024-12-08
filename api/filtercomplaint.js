@@ -147,36 +147,69 @@ module.exports = async (req, res) => {
     if (phone) {
         serviceFilterParts.push(`SEARCH("${phone}", {Phone Number}) > 0`);
     }
+    // if (location && location !== 'Select a location') {
+    //     serviceFilterParts.push(`SEARCH("${location}", {City}) > 0`);
+    // }
+    // if (dealer && dealer !== 'Select a dealer') {
+    //     serviceFilterParts.push(`SEARCH("${dealer}", {Dealer}) > 0`);
+    // }
+    // if (status) {
+    //     serviceFilterParts.push(`SEARCH("${status}", {Status}) > 0`);
+    // }
+    // if (productcategory && productcategory !== 'Select a category') {
+    //     serviceFilterParts.push(`SEARCH("${productcategory}", {category}) > 0`);
+    // }
+    // if (productname && productname !== 'Select a product') {
+    //     serviceFilterParts.push(`SEARCH("${productname}", {product name}) > 0`);
+    // }
+    // if (servicetype) {
+    //     serviceFilterParts.push(`SEARCH("${servicetype}", {Service type}) > 0`);
+    // }
+    // if (sourceby && sourceby !== 'Select an option') {
+    //     serviceFilterParts.push(`SEARCH("${sourceby}", {Source by}) > 0`);
+    // }
+
+    // // Build filter formula dynamically for Admin table
+    // let adminFilterParts = [];
+    // if (allotment && allotment !== 'Select an employee') {
+    //     adminFilterParts.push(`SEARCH("${allotment}", {Allotted to}) > 0`);
+    // }
+
+    // const serviceFilterFormula = `AND(${serviceFilterParts.join(', ')})`;
+    // const adminFilterFormula = `AND(${adminFilterParts.join(', ')})`;
+
     if (location && location !== 'Select a location') {
-        serviceFilterParts.push(`SEARCH("${location}", {City}) > 0`);
-    }
-    if (dealer && dealer !== 'Select a dealer') {
-        serviceFilterParts.push(`SEARCH("${dealer}", {Dealer}) > 0`);
-    }
-    if (status) {
-        serviceFilterParts.push(`SEARCH("${status}", {Status}) > 0`);
-    }
-    if (productcategory && productcategory !== 'Select a category') {
-        serviceFilterParts.push(`SEARCH("${productcategory}", {category}) > 0`);
-    }
-    if (productname && productname !== 'Select a product') {
-        serviceFilterParts.push(`SEARCH("${productname}", {product name}) > 0`);
-    }
-    if (servicetype) {
-        serviceFilterParts.push(`SEARCH("${servicetype}", {Service type}) > 0`);
-    }
-    if (sourceby && sourceby !== 'Select an option') {
-        serviceFilterParts.push(`SEARCH("${sourceby}", {Source by}) > 0`);
-    }
-
-    // Build filter formula dynamically for Admin table
-    let adminFilterParts = [];
-    if (allotment && allotment !== 'Select an employee') {
-        adminFilterParts.push(`SEARCH("${allotment}", {Allotted to}) > 0`);
-    }
-
-    const serviceFilterFormula = `AND(${serviceFilterParts.join(', ')})`;
-    const adminFilterFormula = `AND(${adminFilterParts.join(', ')})`;
+        serviceFilterParts.push(`{City} = "${location}"`);
+      }
+      if (dealer && dealer !== 'Select a dealer') {
+        serviceFilterParts.push(`{Dealer} = "${dealer}"`);
+      }
+      if (status) {
+        serviceFilterParts.push(`{Status} = "${status}"`);
+      }
+      if (productcategory && productcategory !== 'Select a category') {
+        serviceFilterParts.push(`{category} = "${productcategory}"`);
+      }
+      if (productname && productname !== 'Select a product') {
+        serviceFilterParts.push(`{product name} = "${productname}"`);
+      }
+      if (servicetype) {
+        serviceFilterParts.push(`{Service type} = "${servicetype}"`);
+      }
+      if (sourceby && sourceby !== 'Select an option') {
+        serviceFilterParts.push(`{Source by} = "${sourceby}"`);
+      }
+      
+      // Build filter formula dynamically for Admin table
+      let adminFilterParts = [];
+      if (allotment && allotment !== 'Select an employee') {
+        adminFilterParts.push(`{allotted to} = "${allotment}"`);
+      }
+      
+      // Use OR operator to combine filter parts
+      const serviceFilterFormula = serviceFilterParts.length > 0 ? `OR(${serviceFilterParts.join(', ')})` : '';
+      const adminFilterFormula = adminFilterParts.length > 0 ? `OR(${adminFilterParts.join(', ')})` : '';
+      
 
     try {
         // Fetch records from the Service table
@@ -199,7 +232,7 @@ module.exports = async (req, res) => {
             Phone: record.get('Phone Number'),
             Name: record.get('Customer Name'),
             Dealer: record.get('Dealer'),
-            Location: record.get('Location'),
+           Location: record.get('Location'),
             Status: record.get('Status'),
             "date and time of complain": record.get('date and time of complain'),
             productcategory: record.get('category'),
