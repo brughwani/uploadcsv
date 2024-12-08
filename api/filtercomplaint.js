@@ -224,8 +224,8 @@ module.exports = async (req, res) => {
     //     console.error(err);
     //     res.status(500).send('Error fetching records from Airtable');
     // }
-    const matchedRecords = serviceData.map(service => {
-        const adminRecord = adminData.find(admin => admin.serviceid === service.serviceid);
+    const matchedRecords = retrievedServiceRecords.map(service => {
+        const adminRecord = retrievedAdminRecords.find(admin => admin.serviceid === service.serviceid);
         if (adminRecord) {
             return {
                 serviceid: service.serviceid,
