@@ -69,8 +69,9 @@ module.exports = async (req, res) => {
         const filteredRecords = adminRecords.filter(record => {
 
             console.log(record.get('Service ID'));
-            if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
-            if (productname && record.get('product name')?.toString() !== productname.toLowerCase()) console.log();
+            if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) console.log(1);
+            if (phone && record.get('Phone Number')?.toString() !== phone) console.log(1);
+            if (productname && record.get('product name')?.toString() !== productname.toLowerCase()) console.log(1);
             if(location && record.get('City')?.toString() !== location.toLowerCase()) console.log(1);
 
         //     const fields = record.fields;
