@@ -62,17 +62,31 @@ module.exports = async (req, res) => {
 
          // Extract Service IDs and allotment info from Admin table
          const allotmentMap = adminRecords.reduce((map, record) => {
-             map[record.fields['Service ID']] = record.fields['Allotted To'] || null; // Map Service ID to Allotted To
+             map[record.fields['Service ID']] = record.fields['allotted To'] || null; // Map Service ID to Allotted To
              return map;
          }, {});
+         const filteredRecords = [];
 
-        const filteredRecords = adminRecords.filter(record => {
 
-            console.log(record.get('Service ID'));
-            if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) console.log(1);
-            if (phone && record.get('Phone Number')?.toString() !== phone) console.log(2);
-            if (productname && record.get('product name')?.toString() !== productname.toLowerCase()) console.log(3);
-            if(location && record.get('City')?.toString() !== location.toLowerCase()) console.log(4);
+        adminRecords.forEach(record => {
+
+            let matches = true;
+
+
+        
+            if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())); matches = false;
+            if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
+            if (productcategory && record.get('product name')?.toString() !== productname.toLowerCase()) matches = false
+            if(location && record.get('City')?.toString() !== location.toLowerCase()) matches= false
+
+            if(matches)
+            {
+                filteredRecords.push({
+                    id: record.id,
+                    ...record.fields, // Include all fields of the record
+                });
+            }
+       
 
         //     const fields = record.fields;
 
@@ -97,10 +111,13 @@ module.exports = async (req, res) => {
         //     ...record.fields, // Spread all fields
         // }));
 
-    //    res.status(200).json(filteredRecords);
+       res.status(200).json(filteredRecords);
+    
 
 
-    })
+      }
+      )
+    
 }
 catch (err) {
         console.error(err);
