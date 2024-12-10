@@ -97,7 +97,7 @@ module.exports = async (req, res) => {
         //     ...record.fields, // Spread all fields
         // }));
 
-        res.status(200).json(formattedRecords);
+        res.status(200).json(filteredRecords);
 
 
     })
