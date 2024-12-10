@@ -71,14 +71,14 @@ module.exports = async (req, res) => {
             // Perform matching based on provided inputs
             let matches = true;
 
-            console.log(fields['category']);
+         //   console.log(fields);
 
-            // if (name && !fields.Name?.toLowerCase().includes(name.toLowerCase())) matches = false;
-            // if (phone && fields['Phone Number'] !== phone) matches = false;
-            // if (dealer && fields.Dealer?.toLowerCase() !== dealer.toLowerCase()) matches = false;
-            // if (location && fields.Location?.toLowerCase() !== location.toLowerCase()) matches = false;
-            // if (productcategory && fields.category?.toLowerCase() !== productcategory.toLowerCase()) matches = false;
-            // if (productname && fields['Product Name']?.toLowerCase() !== productname.toLowerCase()) matches = false;
+            if (name && !fields.get('Customer Name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
+            if (phone && fields.get('Phone Number')?.toString() !== phone) matches = false;
+            if (dealer && fields.get('Dealer')?.toString().toLowerCase() !== dealer.toLowerCase()) matches = false;
+            if (location && fields.get('City')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
+            if (productcategory && fields.get('category')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
+            if (productname && fields['Product Name']?.toLowerCase() !== productname.toLowerCase()) matches = false;
 
             return matches;
         });
