@@ -52,12 +52,20 @@ module.exports = async (req, res) => {
         
         }));
 
-        const adminData = adminRecords.map(record => ({
-            id: record.id,
-            serviceID: record.get('ServiceID'), // Replace 'ServiceID' with the actual field name
-            assignedTo: record.get('Allotted to')
-        }));
-        const filteredRecords = records.filter(record => {
+        // const adminData = adminRecords.map(record => ({
+        //     id: record.id,
+        //     serviceID: record.get('ServiceID'), // Replace 'ServiceID' with the actual field name
+        //     assignedTo: record.get('Allotted to')
+        // }));
+         // Fetch all records from the Admin table
+//         const adminRecords = await base('Admin').select({ view: 'Grid view' }).all();
+
+         // Extract Service IDs and allotment info from Admin table
+         const allotmentMap = adminRecords.reduce((map, record) => {
+             map[record.fields['Service ID']] = record.fields['Allotted To'] || null; // Map Service ID to Allotted To
+             return map;
+         }, {});
+        const filteredRecords = serviceData.filter(record => {
             const fields = record.fields;
 
             // Perform matching based on provided inputs
