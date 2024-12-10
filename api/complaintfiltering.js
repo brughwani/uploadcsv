@@ -71,7 +71,7 @@ module.exports = async (req, res) => {
             // Perform matching based on provided inputs
             let matches = true;
 
-            console.log(fields);
+            console.log(fields['category']);
 
             // if (name && !fields.Name?.toLowerCase().includes(name.toLowerCase())) matches = false;
             // if (phone && fields['Phone Number'] !== phone) matches = false;
