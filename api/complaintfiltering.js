@@ -71,12 +71,14 @@ module.exports = async (req, res) => {
             // Perform matching based on provided inputs
             let matches = true;
 
-            if (name && !fields.Name?.toLowerCase().includes(name.toLowerCase())) matches = false;
-            if (phone && fields['Phone Number'] !== phone) matches = false;
-            if (dealer && fields.Dealer?.toLowerCase() !== dealer.toLowerCase()) matches = false;
-            if (location && fields.Location?.toLowerCase() !== location.toLowerCase()) matches = false;
-            if (productcategory && fields.category?.toLowerCase() !== productcategory.toLowerCase()) matches = false;
-            if (productname && fields['Product Name']?.toLowerCase() !== productname.toLowerCase()) matches = false;
+            console.log(fields);
+
+            // if (name && !fields.Name?.toLowerCase().includes(name.toLowerCase())) matches = false;
+            // if (phone && fields['Phone Number'] !== phone) matches = false;
+            // if (dealer && fields.Dealer?.toLowerCase() !== dealer.toLowerCase()) matches = false;
+            // if (location && fields.Location?.toLowerCase() !== location.toLowerCase()) matches = false;
+            // if (productcategory && fields.category?.toLowerCase() !== productcategory.toLowerCase()) matches = false;
+            // if (productname && fields['Product Name']?.toLowerCase() !== productname.toLowerCase()) matches = false;
 
             return matches;
         });
