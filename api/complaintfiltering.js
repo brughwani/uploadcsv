@@ -70,9 +70,9 @@ module.exports = async (req, res) => {
 
             console.log(record.get('Service ID'));
             if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) console.log(1);
-            if (phone && record.get('Phone Number')?.toString() !== phone) console.log(1);
-            if (productname && record.get('product name')?.toString() !== productname.toLowerCase()) console.log(1);
-            if(location && record.get('City')?.toString() !== location.toLowerCase()) console.log(1);
+            if (phone && record.get('Phone Number')?.toString() !== phone) console.log(2);
+            if (productname && record.get('product name')?.toString() !== productname.toLowerCase()) console.log(3);
+            if(location && record.get('City')?.toString() !== location.toLowerCase()) console.log(4);
 
         //     const fields = record.fields;
 
