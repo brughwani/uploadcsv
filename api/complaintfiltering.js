@@ -69,9 +69,9 @@ module.exports = async (req, res) => {
         const filteredRecords = adminRecords.filter(record => {
 
             console.log(record.get('Service ID'));
-            if (name && !record.get('Customer Name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
-            if (phone && record.get('Phone Number')?.toString() !== phone) matches = false;
-
+            if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
+            if (productname && record.get('product name')?.toString() !== productname.toLowerCase()) console.log();
+            if(location && record.get('City')?.toString() !== location.toLowerCase()) console.log(1);
 
         //     const fields = record.fields;
 
@@ -99,12 +99,14 @@ module.exports = async (req, res) => {
         res.status(200).json(formattedRecords);
 
 
-    } catch (err) {
+    })
+}
+catch (err) {
         console.error(err);
         res.status(500).send('Error fetching records from Airtable');
     }
-};
 
+}
 
 
 
