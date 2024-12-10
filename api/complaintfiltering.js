@@ -65,29 +65,36 @@ module.exports = async (req, res) => {
              map[record.fields['Service ID']] = record.fields['Allotted To'] || null; // Map Service ID to Allotted To
              return map;
          }, {});
-        const filteredRecords = serviceData.filter(record => {
-            const fields = record.fields;
 
-            // Perform matching based on provided inputs
-            let matches = true;
+        const filteredRecords = adminRecords.filter(record => {
 
-         //   console.log(fields);
+            console.log(record.get('Service ID'));
+            if (name && !record.get('Customer Name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
+            if (phone && record.get('Phone Number')?.toString() !== phone) matches = false;
 
-            if (name && !fields.get('Customer Name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
-            if (phone && fields.get('Phone Number')?.toString() !== phone) matches = false;
-            if (dealer && fields.get('Dealer')?.toString().toLowerCase() !== dealer.toLowerCase()) matches = false;
-            if (location && fields.get('City')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
-            if (productcategory && fields.get('category')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
-            if (productname && fields['Product Name']?.toLowerCase() !== productname.toLowerCase()) matches = false;
 
-            return matches;
-        });
+        //     const fields = record.fields;
 
-        // Format the response
-        const formattedRecords = filteredRecords.map(record => ({
-            id: record.id, // Airtable's unique record ID
-            ...record.fields, // Spread all fields
-        }));
+        //     // Perform matching based on provided inputs
+        //     let matches = true;
+
+        //  //   console.log(fields);
+
+        //     if (name && !fields.get('Customer Name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
+        //     if (phone && fields.get('Phone Number')?.toString() !== phone) matches = false;
+        //     if (dealer && fields.get('Dealer')?.toString().toLowerCase() !== dealer.toLowerCase()) matches = false;
+        //     if (location && fields.get('City')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
+        //     if (productcategory && fields.get('category')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
+        //     if (productname && fields['Product Name']?.toLowerCase() !== productname.toLowerCase()) matches = false;
+
+        //     return matches;
+        // });
+
+        // // Format the response
+        // const formattedRecords = filteredRecords.map(record => ({
+        //     id: record.id, // Airtable's unique record ID
+        //     ...record.fields, // Spread all fields
+        // }));
 
         res.status(200).json(formattedRecords);
 
