@@ -1,4 +1,5 @@
 const Airtable = require('airtable');
+const category = require('./category');
 
 // Configure Airtable base
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
@@ -66,7 +67,7 @@ module.exports = async (req, res) => {
              return map;
          }, {});
          const filteredRecords = [];
-
+console.log(adminRecords)
 
         adminRecords.forEach(record => {
 
@@ -78,9 +79,7 @@ module.exports = async (req, res) => {
        //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
             if (productcategory && record.get('product name')?.toString() !== productname.toLowerCase()) matches = false
             if(location && record.get('City')?.toString() !== location.toLowerCase()) matches= false
-
-
-
+            if(category && record.get('category')?.toString() !== category.toLowerCase()) matches= false
             if(matches)
             {
                 filteredRecords.push({
