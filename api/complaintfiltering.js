@@ -74,7 +74,7 @@ module.exports = async (req, res) => {
 
 
         
-            if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())); matches = false;
+            if (name && record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
        //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
             if (productcategory && record.get('product name')?.toString() !== productname.toLowerCase()) matches = false
             if(location && record.get('City')?.toString() !== location.toLowerCase()) matches= false
@@ -88,9 +88,23 @@ module.exports = async (req, res) => {
                     ...record.fields, // Include all fields of the record
                 });
             }
-       
+            
+  }
+     
+      )
+      res.status(200).json(filteredRecords);
+   
+    
+}
+catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching records from Airtable');
+    }
 
-        //     const fields = record.fields;
+}
+
+
+    //     const fields = record.fields;
 
         //     // Perform matching based on provided inputs
         //     let matches = true;
@@ -112,24 +126,6 @@ module.exports = async (req, res) => {
         //     id: record.id, // Airtable's unique record ID
         //     ...record.fields, // Spread all fields
         // }));
-
-      
-    
-
-
-      }
-      )
-      res.status(200).json(filteredRecords);
-    
-}
-catch (err) {
-        console.error(err);
-        res.status(500).send('Error fetching records from Airtable');
-    }
-
-}
-
-
 
 
   
