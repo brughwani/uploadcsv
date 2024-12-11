@@ -75,11 +75,11 @@ console.log(adminRecords)
 
 
         
-            if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
+            if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
        //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
-            if (productcategory && record.get('product name')?.toString() !== productname.toLowerCase()) matches = false
-            if(location && record.get('City')?.toString() !== location.toLowerCase()) matches= false
-            if(category && record.get('category')?.toString() !== category.toLowerCase()) matches= false
+            if (productcategory && record.get('product name (from Serviceid)')?.toString() !== productname.toLowerCase()) matches = false
+            if(location && record.get('City (from Serviceid)')?.toString() !== location.toLowerCase()) matches= false
+            if(category && record.get('category (from Serviceid)')?.toString() !== category.toLowerCase()) matches= false
             if(matches)
             {
                 filteredRecords.push({
