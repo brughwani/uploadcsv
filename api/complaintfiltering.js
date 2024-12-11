@@ -79,7 +79,7 @@ console.log(adminRecords)
        //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
             if (productcategory && record.get('product name (from Serviceid)')?.toString() !== productname.toLowerCase()) matches = false
             if(location && record.get('City (from Serviceid)')?.toString() !== location.toLowerCase()) matches= false
-            if(category && record.get('category (from Serviceid)')?.toString() !== category.toLowerCase()) matches= false
+            //if(category && record.get('category (from Serviceid)')?.toString() !== category.toLowerCase()) matches= false
             if(matches)
             {
                 filteredRecords.push({
