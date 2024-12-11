@@ -74,7 +74,7 @@ module.exports = async (req, res) => {
 
 
         
-            if (name && record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
+            if (name && !record.get('Customer name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
        //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
             if (productcategory && record.get('product name')?.toString() !== productname.toLowerCase()) matches = false
             if(location && record.get('City')?.toString() !== location.toLowerCase()) matches= false
