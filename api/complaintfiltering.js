@@ -72,10 +72,7 @@ console.log(adminRecords)
         adminRecords.forEach(record => {
 
             let matches = true;
-            
-
-
-        
+            let filteredFields = {};
             if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
        //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
             if (productname && record.get('product name (from Serviceid)')?.toString() !== productname.toLowerCase()) matches = false
@@ -83,10 +80,15 @@ console.log(adminRecords)
             if(productcategory && record.get('category (from Serviceid)')?.toString() !== productcategory.toLowerCase()) matches= false
             if(matches)
             {
-                filteredRecords.push({
+                
                     
-                    ...record.fields, // Include all fields of the record
-                });
+                    if (name) filteredFields['Customer name (from Serviceid)'] = record.get('Customer name (from Serviceid)');
+                    if (productname) filteredFields['product name (from Serviceid)'] = record.get('product name (from Serviceid)');
+                    if (location) filteredFields['City (from Serviceid)'] = record.get('City (from Serviceid)');
+                    if (productcategory) filteredFields['category (from Serviceid)'] = record.get('category (from Serviceid)');
+                    
+                    filteredRecords.push(filteredFields); // Include all fields of the record
+                
             }
             
   }
