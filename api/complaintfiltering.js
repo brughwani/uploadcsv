@@ -79,7 +79,7 @@ console.log(adminRecords)
     if (location && record.get('City (from Serviceid)')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
     if (productcategory && record.get('category (from Serviceid)')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
 
-    return matches;
+    
 }).map(record => ({
     'Customer Name': record.get('Customer name (from Serviceid)'),
     'Product Name': record.get('product name (from Serviceid)'),
