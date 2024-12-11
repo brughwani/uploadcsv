@@ -47,11 +47,11 @@ module.exports = async (req, res) => {
             view: "Grid view" // Adjust view as necessary
         }).all();
 
-        const serviceData = serviceRecords.map(record => ({
-            id: record.id,
-            serviceID: record.get('ServiceID'), // Replace 'ServiceID' with the actual field name
+        // const serviceData = serviceRecords.map(record => ({
         
-        }));
+        //     serviceID: record.get('ServiceID'), // Replace 'ServiceID' with the actual field name
+        
+        // }));
 
         // const adminData = adminRecords.map(record => ({
         //     id: record.id,
@@ -72,6 +72,7 @@ console.log(adminRecords)
         adminRecords.forEach(record => {
 
             let matches = true;
+            
 
 
         
@@ -83,7 +84,7 @@ console.log(adminRecords)
             if(matches)
             {
                 filteredRecords.push({
-                    id: record.id,
+                    
                     ...record.fields, // Include all fields of the record
                 });
             }
