@@ -111,12 +111,13 @@ module.exports = async (req, res) => {
         //     ...record.fields, // Spread all fields
         // }));
 
-       res.status(200).json(filteredRecords);
+      
     
 
 
       }
       )
+      res.status(200).json(filteredRecords);
     
 }
 catch (err) {
