@@ -73,27 +73,38 @@ console.log(adminRecords)
 
             let matches = true;
             let filteredFields = {};
+
             if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
-       //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
-            if (productname && record.get('product name (from Serviceid)')?.toString() !== productname.toLowerCase()) matches = false
-            if(location && record.get('City (from Serviceid)')?.toString() !== location.toLowerCase()) matches= false
-            if(productcategory && record.get('category (from Serviceid)')?.toString() !== productcategory.toLowerCase()) matches= false
-            if(matches)
-            {
+    if (productname && record.get('product name (from Serviceid)')?.toString().toLowerCase() !== productname.toLowerCase()) matches = false;
+    if (location && record.get('City (from Serviceid)')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
+    if (productcategory && record.get('category (from Serviceid)')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
+
+    return matches;
+}).map(record => ({
+    'Customer Name': record.get('Customer name (from Serviceid)'),
+    'Product Name': record.get('product name (from Serviceid)'),
+    'Location': record.get('City (from Serviceid)'),
+    'Product Category': record.get('category (from Serviceid)'),
+}));
+    //         if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
+    //    //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
+    //         if (productname && record.get('product name (from Serviceid)')?.toString() !== productname.toLowerCase()) matches = false
+    //         if(location && record.get('City (from Serviceid)')?.toString() !== location.toLowerCase()) matches= false
+    //         if(productcategory && record.get('category (from Serviceid)')?.toString() !== productcategory.toLowerCase()) matches= false
+    //         if(matches)
+    //         {
                 
                     
-                    if (name) filteredFields['Customer name (from Serviceid)'] = record.get('Customer name (from Serviceid)');
-                    if (productname) filteredFields['product name (from Serviceid)'] = record.get('product name (from Serviceid)');
-                    if (location) filteredFields['City (from Serviceid)'] = record.get('City (from Serviceid)');
-                    if (productcategory) filteredFields['category (from Serviceid)'] = record.get('category (from Serviceid)');
+    //                 if (name) filteredFields['Customer name (from Serviceid)'] = record.get('Customer name (from Serviceid)');
+    //                 if (productname) filteredFields['product name (from Serviceid)'] = record.get('product name (from Serviceid)');
+    //                 if (location) filteredFields['City (from Serviceid)'] = record.get('City (from Serviceid)');
+    //                 if (productcategory) filteredFields['category (from Serviceid)'] = record.get('category (from Serviceid)');
                     
-                    filteredRecords.push(filteredFields); // Include all fields of the record
+    //                 filteredRecords.push(filteredFields); // Include all fields of the record
                 
-            }
             
-  }
-     
-      )
+            
+  
       res.status(200).json(filteredRecords);
    
     
