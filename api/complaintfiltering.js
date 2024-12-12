@@ -93,7 +93,7 @@ console.log(adminRecords)
 
             let matches = true;
           
-            if (!record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(data['Customer name'].toLowerCase())) matches = false;
+            if (!record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(data['Customer name'])) matches = false;
     if (record.get('product name (from Serviceid)')?.toString().toLowerCase() !== data['productname'].toLowerCase()) matches = false;
     if (record.get('City (from Serviceid)')?.toString().toLowerCase() !== data['Location'].toLowerCase()) matches = false;
     if (record.get('category (from Serviceid)')?.toString().toLowerCase() !== data['productcategory'].toLowerCase) matches = false;
