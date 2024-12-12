@@ -21,17 +21,17 @@ module.exports = async (req, res) => {
       }
 
       const data={
-        "fromdate": req.body.fields['fromdate'],
-        "todate": req.body.fields['todate'],
-        "Customer name": req.body.fields['Customer name'],
-    "Phone Number":req.body.fields['Phone Number'],
-    "Location": req.body.fields['Location'],
-    "Dealer": req.body.fields['Dealer'],
-    "productcategory": req.body.fields['category'],
-    "productname": req.body.fields['product name'],
-    "allotment":req.body.fields['allotted to'],
-    "Request Type": req.body.fields['Service Type'],
-    "Source by": req.body.fields['Source by'],
+        "fromdate": req.body['fromdate'],
+        "todate": req.body['todate'],
+        "Customer name": req.body['Customer name'],
+    "Phone Number":req.body['Phone Number'],
+    "Location": req.body['Location'],
+    "Dealer": req.body['Dealer'],
+    "productcategory": req.body['category'],
+    "productname": req.body['product name'],
+    "allotment":req.body['allotted to'],
+    "Request Type": req.body['Service Type'],
+    "Source by": req.body['Source by'],
       }
     //   const {
     //     fromdate = null,
