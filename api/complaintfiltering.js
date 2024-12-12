@@ -72,7 +72,7 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
 
-            console.log(name.toString())
+            console.log(name)
             console.log(productname)
             console.log(location.toString())
             console.log(productcategory)

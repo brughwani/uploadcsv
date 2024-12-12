@@ -119,10 +119,10 @@ module.exports = async (req, res) => {
   }
     // Extract query parameters
     const {
-        name = null,
+        name,
         phone = null,
         dealer = null,
-        location = null,
+        location,
         fromdate = null,
         todate = null,
         status = null,
