@@ -72,9 +72,9 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
 
-            console.log(name)
+            console.log(name.toString())
             console.log(productname)
-            console.log(location)
+            console.log(location.toString())
             console.log(productcategory)
 
             let matches = true;
