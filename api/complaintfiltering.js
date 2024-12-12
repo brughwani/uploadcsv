@@ -22,9 +22,9 @@ module.exports = async (req, res) => {
       const {
         fromdate = null,
         todate = null,
-        name = null,
+        name,
         phone = null,
-        location = null,
+        location,
         dealer = null,
     
         productcategory = null,
