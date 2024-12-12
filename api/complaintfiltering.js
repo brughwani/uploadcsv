@@ -19,21 +19,35 @@ module.exports = async (req, res) => {
         res.status(405).send('Method Not Allowed');
         return;
       }
-      const {
-        fromdate = null,
-        todate = null,
-        name,
-        phone = null,
-        location,
-        dealer = null,
+
+      const data={
+        "fromdate": req.body.fields['fromdate'],
+        "todate": req.body.fields['todate'],
+        "Customer name": req.body.fields['Customer name'],
+    "Phone Number":req.body.fields['Phone Number'],
+    "Location": req.body.fields['Location'],
+    "Dealer": req.body.fields['Dealer'],
+    "productcategory": req.body.fields['category'],
+    "productname": req.body.fields['product name'],
+    "allotment":req.body.fields['allotted to'],
+    "Request Type": req.body.fields['Service Type'],
+    "Source by": req.body.fields['Source by'],
+      }
+    //   const {
+    //     fromdate = null,
+    //     todate = null,
+    //     name,
+    //     phone = null,
+    //     location,
+    //     dealer = null,
     
-        productcategory = null,
-        productname = null,
+    //     productcategory = null,
+    //     productname = null,
        
-        status = null,
-        servicetype = null,
-        sourceby = null
-    } = req.query;
+    //     status = null,
+    //     servicetype = null,
+    //     sourceby = null
+    // } = req.query;
 
     
 
@@ -79,10 +93,10 @@ console.log(adminRecords)
 
             let matches = true;
           
-            if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
-    if (productname && record.get('product name (from Serviceid)')?.toString().toLowerCase() !== productname.toLowerCase()) matches = false;
-    if (location && record.get('City (from Serviceid)')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
-    if (productcategory && record.get('category (from Serviceid)')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
+            if (data['Customer name'] && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
+    if (data['productname'] && record.get('product name (from Serviceid)')?.toString().toLowerCase() !== productname.toLowerCase()) matches = false;
+    if (data['Location'] && record.get('City (from Serviceid)')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
+    if (data['productcategory'] && record.get('category (from Serviceid)')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
 
 if (matches) {
         filteredFields.push([record.get('Customer name (from Serviceid)'), 
