@@ -79,6 +79,13 @@ console.log(adminRecords)
     if (location && record.get('City (from Serviceid)')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
     if (productcategory && record.get('category (from Serviceid)')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
 
+if (matches) {
+        filteredFields.push([record.get('Customer name (from Serviceid)'), 
+                               record.get('Phone Number'), 
+                               record.get('product name (from Serviceid)'), 
+                               record.get('City (from Serviceid)'), 
+                               record.get('category (from Serviceid)')]);
+    }
     
 })
     //         if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
