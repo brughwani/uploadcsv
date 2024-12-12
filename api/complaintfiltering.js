@@ -8,6 +8,7 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    let filteredFields = {};
 
     if (req.method === 'OPTIONS') {
         res.status(200).end();
@@ -72,20 +73,14 @@ console.log(adminRecords)
         adminRecords.forEach(record => {
 
             let matches = true;
-            let filteredFields = {};
-
+          
             if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
     if (productname && record.get('product name (from Serviceid)')?.toString().toLowerCase() !== productname.toLowerCase()) matches = false;
     if (location && record.get('City (from Serviceid)')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
     if (productcategory && record.get('category (from Serviceid)')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
 
     
-}).map(record => ({
-    'Customer Name': record.get('Customer name (from Serviceid)'),
-    'Product Name': record.get('product name (from Serviceid)'),
-    'Location': record.get('City (from Serviceid)'),
-    'Product Category': record.get('category (from Serviceid)'),
-}));
+})
     //         if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
     //    //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
     //         if (productname && record.get('product name (from Serviceid)')?.toString() !== productname.toLowerCase()) matches = false
