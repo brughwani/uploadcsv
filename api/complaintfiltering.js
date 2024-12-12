@@ -93,10 +93,10 @@ console.log(adminRecords)
 
             let matches = true;
           
-            if (data['Customer name'] && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
-    if (data['productname'] && record.get('product name (from Serviceid)')?.toString().toLowerCase() !== productname.toLowerCase()) matches = false;
-    if (data['Location'] && record.get('City (from Serviceid)')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
-    if (data['productcategory'] && record.get('category (from Serviceid)')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
+            if (data['Customer name'] && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(data['Customer name'].toLowerCase())) matches = false;
+    if (data['productname'] && record.get('product name (from Serviceid)')?.toString().toLowerCase() !== data['productname'].toLowerCase()) matches = false;
+    if (data['Location'] && record.get('City (from Serviceid)')?.toString().toLowerCase() !== data['Location'].toLowerCase()) matches = false;
+    if (data['productcategory'] && record.get('category (from Serviceid)')?.toString().toLowerCase() !== data['productcategory'].toLowerCase) matches = false;
 
 if (matches) {
         filteredRecords.push([record.get('Customer name (from Serviceid)'), 
