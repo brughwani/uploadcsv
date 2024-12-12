@@ -72,6 +72,11 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
 
+            console.log(name)
+            console.log(productname)
+            console.log(location)
+            console.log(productcategory)
+
             let matches = true;
           
             if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
