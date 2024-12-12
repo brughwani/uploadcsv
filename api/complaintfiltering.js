@@ -81,7 +81,7 @@ module.exports = async (req, res) => {
              map[record.fields['Service ID']] = record.fields['allotted To'] || null; // Map Service ID to Allotted To
              return map;
          }, {});
-         const filteredRecords = [];
+         let filteredRecords = [];
 console.log(adminRecords)
 
         adminRecords.forEach(record => {
@@ -99,7 +99,7 @@ console.log(adminRecords)
     if (data['productcategory'] && record.get('category (from Serviceid)')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
 
 if (matches) {
-        filteredFields.push([record.get('Customer name (from Serviceid)'), 
+        filteredRecords.push([record.get('Customer name (from Serviceid)'), 
                                record.get('Phone Number'), 
                                record.get('product name (from Serviceid)'), 
                                record.get('City (from Serviceid)'), 
