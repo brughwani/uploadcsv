@@ -106,6 +106,7 @@ if (matches) {
                 
             
             
+  console.log(filteredRecords);
   
       res.status(200).json(filteredRecords);
    
