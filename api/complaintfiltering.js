@@ -85,6 +85,7 @@ if (matches) {
                                record.get('product name (from Serviceid)'), 
                                record.get('City (from Serviceid)'), 
                                record.get('category (from Serviceid)')]);
+        console.log(1)
     }
     
 })
