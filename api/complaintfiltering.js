@@ -86,10 +86,10 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
 
-            console.log(data['Customer name'])
-            console.log(data['productname'])
-            console.log(data['Location'])
-            console.log(data['productcategory'])
+            console.log(typeof data['Customer name'])
+            console.log(typeof data['productname'])
+            console.log(typeof data['Location'])
+            console.log(typeof data['productcategory'])
 
             // console.log(name)
             // console.log(productname)
