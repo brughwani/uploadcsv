@@ -88,10 +88,10 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
 
-            console.log(typeof data['Customer name'])
-            console.log(typeof data['productname'])
-            console.log(typeof data['Location'])
-            console.log(typeof data['productcategory'])
+            console.log(data['Customer name'])
+            console.log(data['productname'])
+            console.log(data['Location'])
+            console.log(data['productcategory'])
 
             // console.log(name)
             // console.log(productname)
@@ -112,7 +112,7 @@ console.log(adminRecords)
                 console.log(1)
                 matches = false;
             }
-    if (record.get('product name (from Serviceid)')[0] !== data['productname']) 
+    if (record.get('product name (from Serviceid)')[0].toLowerCase() !== data['productname'].toLowerCase()) 
     {
         console.log(2)
         matches = false;
