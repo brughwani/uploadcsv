@@ -33,6 +33,8 @@ module.exports = async (req, res) => {
     "Request Type": req.body['Service Type'],
     "Source by": req.body['Source by'],
       }
+      console.log(data)
+      console.log(req.body) 
     //   const {
     //     fromdate = null,
     //     todate = null,
