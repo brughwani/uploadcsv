@@ -86,6 +86,11 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
 
+            console.log(data['Customer name'])
+            console.log(data['productname'])
+            console.log(data['Location'])
+            console.log(data['productcategory'])
+
             // console.log(name)
             // console.log(productname)
             // console.log(location.toString())
