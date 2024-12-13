@@ -107,10 +107,28 @@ console.log(adminRecords)
 
         
           
-            if (!record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(data['Customer name'])) matches = false;
-    if (record.get('product name (from Serviceid)')?.toString() !== data['productname']) matches = false;
-    if (record.get('City (from Serviceid)')?.toString() !== data['Location']) matches = false;
-    if (record.get('category (from Serviceid)')?.toString() !== data['productcategory']) matches = false;
+            if (!record.get('Customer name (from Serviceid)')[0].toLowerCase().includes(data['Customer name']))
+            {
+                console.log(1)
+                matches = false;
+            }
+    if (record.get('product name (from Serviceid)')[0] !== data['productname']) 
+    {
+        console.log(2)
+        matches = false;
+    }
+        
+    if (record.get('City (from Serviceid)')[0] !== data['Location']) 
+    {
+        console.log(3)
+        matches = false;
+    }
+        
+    if (record.get('category (from Serviceid)')[0] !== data['productcategory'])
+    {
+        console.log(4)
+        matches = false;
+    }
 
 if (matches) {
         filteredRecords.push([record.get('Customer name (from Serviceid)'), 
