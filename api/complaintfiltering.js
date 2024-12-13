@@ -99,6 +99,13 @@ console.log(adminRecords)
             // console.log(productcategory)
 
             let matches = true;
+
+            console.log(record.get('Customer name (from Serviceid)'))
+            console.log(record.get('product name (from Serviceid)'))
+            console.log(record.get('City (from Serviceid)'))
+            console.log(record.get('category (from Serviceid)'))
+
+        
           
             if (!record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(data['Customer name'])) matches = false;
     if (record.get('product name (from Serviceid)')?.toString() !== data['productname']) matches = false;
