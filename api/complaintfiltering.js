@@ -101,9 +101,9 @@ console.log(adminRecords)
             let matches = true;
 
             console.log(record.get('Customer name (from Serviceid)')[0].toLowerCase())
-            console.log(record.get('product name (from Serviceid)')[0].toLowerCase())
-            console.log(record.get('City (from Serviceid)')[0].toLowerCase())
-            console.log(record.get('category (from Serviceid)')[0].toLowerCase())
+            console.log(record.get('product name (from Serviceid)')[0])
+            console.log(record.get('City (from Serviceid)')[0])
+            console.log(record.get('category (from Serviceid)')[0])
 
         
           
@@ -112,7 +112,7 @@ console.log(adminRecords)
                 console.log(1)
                 matches = false;
             }
-    if (record.get('product name (from Serviceid)')[0].toLowerCase() !== data['productname'].toLowerCase()) 
+    if (record.get('product name (from Serviceid)')[0] !== data['productname']) 
     {
         console.log(2)
         matches = false;
