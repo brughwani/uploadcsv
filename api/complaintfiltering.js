@@ -100,10 +100,10 @@ console.log(adminRecords)
 
             let matches = true;
 
-            console.log(record.get('Customer name (from Serviceid)'))
-            console.log(record.get('product name (from Serviceid)'))
-            console.log(record.get('City (from Serviceid)'))
-            console.log(record.get('category (from Serviceid)'))
+            console.log(record.get('Customer name (from Serviceid)')[0].toLowerCase())
+            console.log(record.get('product name (from Serviceid)')[0].toLowerCase())
+            console.log(record.get('City (from Serviceid)')[0].toLowerCase())
+            console.log(record.get('category (from Serviceid)')[0].toLowerCase())
 
         
           
