@@ -26,22 +26,7 @@ module.exports = async (req, res) => {
           throw new Error('Missing fields object in request body');
         }
 
-        // const 
-        // {
-        //   'Customer Name':name,
-        //   'Phone Number':phone,
-         
-        //   'address':address,
-        //   'Pincode':pincode,
-        //   'City':city,
-        //   'Purchase Date':purchasedate,
-        //   'warranty expiry date':warrantyexpirydate,
-         
-        //   'category':category,
-        //   'product name':productname,
-        //   'Complaint':complaint,
-        //   'Request Type':requesttype,
-        // }= req.body.fields;
+       
 
         const data={
           "Customer name": req.body.fields['Customer name'],
@@ -57,13 +42,16 @@ module.exports = async (req, res) => {
       "Request Type": req.body.fields['Request Type'],
         }
 
+
           console.log('Data to be inserted:', data);
 
     // Insert the data into the 'Employee' table
     const record = await base('Service').create(data, {typecast: true});
+    const adminrecord=await base('admin').create(data, {typecast: true});
+
 
     // If successful, send the ID of the created record as the response
-    res.status(200).json({ id: record.getId() });
+    res.status(200).json({servicerecid: record.getId(),adminrecid:adminrecord.getId() });
   } catch (error) {
     
     
