@@ -132,7 +132,7 @@ console.log(adminRecords)
 
 if (matches) {
         filteredRecords.push([record.get('Customer name (from Serviceid)'), 
-                               record.get('Phone Number'), 
+                               record.get('Phone Number (from Serviceid)'), 
                                record.get('product name (from Serviceid)'), 
                                record.get('City (from Serviceid)'), 
                                record.get('category (from Serviceid)')]);
