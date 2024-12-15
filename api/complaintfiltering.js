@@ -8,6 +8,10 @@ function isDateInRange(dateToCheck, startDate, endDate) {
     const date = new Date(dateToCheck);
     const start = new Date(startDate);
     const end = new Date(endDate);
+
+    console.log(date)
+    console.log(start)
+    console.log(end)
   
     // Check if the date is within the range
     return date >= start && date <= end;
@@ -74,7 +78,7 @@ console.log(adminRecords)
             console.log(record.get('date of complain'))
 
             let matches = true;
-            if(!isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
+            if(isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
             {
                 console.log("0")
                 matches = false;
