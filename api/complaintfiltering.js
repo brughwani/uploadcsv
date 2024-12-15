@@ -72,7 +72,7 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
             let matches = true;
-            if(!isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
+            if(!isDateInRange(record.get('date of complain')[0],data['fromdate'],data['todate']))
             {
                 console.log(0)
                 matches = false;
