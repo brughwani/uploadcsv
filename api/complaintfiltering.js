@@ -69,9 +69,10 @@ module.exports = async (req, res) => {
          }, {});
          let filteredRecords = [];
 console.log(adminRecords)
-console.log(record.get('date of complain'))
 
         adminRecords.forEach(record => {
+            console.log(record.get('date of complain'))
+
             let matches = true;
             if(!isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
             {
