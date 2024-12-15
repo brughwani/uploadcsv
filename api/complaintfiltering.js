@@ -84,7 +84,7 @@ console.log(adminRecords)
             console.log(record.get('date of complain'))
 
             let matches = true;
-            if(isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
+            if(!isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
             {
                 console.log("0")
                 matches = false;
