@@ -89,7 +89,7 @@ console.log(adminRecords)
         console.log(2)
         matches = false;
     }
-    else if (data['productname']==="Select a product")
+    else if (data['productname']==="Select a product" || data['productname'] === undefined)
     {
 
         console.log(2.5)
