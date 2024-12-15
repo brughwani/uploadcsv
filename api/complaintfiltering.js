@@ -119,12 +119,14 @@ console.log(adminRecords)
     }
 
 if (matches) {
-        filteredRecords.push([record.get('Customer name (from Serviceid)'), 
-                               record.get('Phone Number (from Serviceid)'), 
-                               record.get('product name (from Serviceid)'), 
-                               record.get('City (from Serviceid)'), 
-                               record.get('category (from Serviceid)')]);
-        console.log(1)
+        filteredRecords.push([record.get('Customer name'), 
+                               record.get('Phone Number'), 
+                               record.get('product name'), 
+                               record.get('City'), 
+                               record.get('category'),
+                               record.get('date of complain')
+                            ]);
+        console.log(1.9)
     }
     
 })
