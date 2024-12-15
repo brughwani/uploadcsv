@@ -79,7 +79,7 @@ console.log(adminRecords)
             }
 
 
-            if (!record.get('Customer name)')[0].toLowerCase().includes(data['Customer name']))
+            if (!record.get('Customer name')[0].toLowerCase().includes(data['Customer name']))
             {
                 console.log(1)
                 matches = false;
