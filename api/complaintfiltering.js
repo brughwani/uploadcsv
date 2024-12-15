@@ -74,33 +74,33 @@ console.log(adminRecords)
             let matches = true;
             if(!isDateInRange(record.get('date of complain')[0],data['fromdate'],data['todate']))
             {
-                console.log(0)
+                console.log("0")
                 matches = false;
             }
 
 
-            if (!record.get('Customer name (from Serviceid)')[0].toLowerCase().includes(data['Customer name']))
+            if (!record.get('Customer name)')[0].toLowerCase().includes(data['Customer name']))
             {
                 console.log(1)
                 matches = false;
             }
-    if (record.get('product name (from Serviceid)')[0] !== data['productname']) 
+    if (record.get('product name')[0] !== data['productname']) 
     {
         console.log(2)
         matches = false;
     }
-    else if (record.get('product name (from Serviceid)')[0]==="Select a product" || record.get('product name (from Serviceid)')[0] === undefined)
+    else if (record.get('product name')[0]==="Select a product" || record.get('product name (from Serviceid)')[0] === undefined)
     {
 
         console.log(2.5)
         matches = true;
     }
-    if (record.get('City (from Serviceid)')[0] !== data['Location']) 
+    if (record.get('City')[0] !== data['Location']) 
     {
         console.log(3)
         matches = false;
     }   
-    if (record.get('category (from Serviceid)')[0] !== data['productcategory'])
+    if (record.get('category')[0] !== data['productcategory'])
     {
         console.log(4)
         matches = false;
