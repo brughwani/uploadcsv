@@ -72,7 +72,6 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
             let matches = true;
-
             if(!isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
             {
                 console.log(0)
@@ -89,6 +88,12 @@ console.log(adminRecords)
     {
         console.log(2)
         matches = false;
+    }
+    else if (data['productname']==="Select a product")
+    {
+
+        console.log(2.5)
+        matches = true;
     }
     if (record.get('City (from Serviceid)')[0] !== data['Location']) 
     {
