@@ -35,21 +35,7 @@ module.exports = async (req, res) => {
       }
       console.log(data)
       console.log(req.query) 
-    //   const {
-    //     fromdate = null,
-    //     todate = null,
-    //     name,
-    //     phone = null,
-    //     location,
-    //     dealer = null,
-    
-    //     productcategory = null,
-    //     productname = null,
-       
-    //     status = null,
-    //     servicetype = null,
-    //     sourceby = null
-    // } = req.query;
+  
 
     
 
@@ -64,20 +50,7 @@ module.exports = async (req, res) => {
             view: "Grid view" // Adjust view as necessary
         }).all();
 
-        // const serviceData = serviceRecords.map(record => ({
-        
-        //     serviceID: record.get('ServiceID'), // Replace 'ServiceID' with the actual field name
-        
-        // }));
-
-        // const adminData = adminRecords.map(record => ({
-        //     id: record.id,
-        //     serviceID: record.get('ServiceID'), // Replace 'ServiceID' with the actual field name
-        //     assignedTo: record.get('Allotted to')
-        // }));
-         // Fetch all records from the Admin table
-//         const adminRecords = await base('Admin').select({ view: 'Grid view' }).all();
-
+     
          // Extract Service IDs and allotment info from Admin table
          const allotmentMap = adminRecords.reduce((map, record) => {
              map[record.fields['Service ID']] = record.fields['allotted To'] || null; // Map Service ID to Allotted To
@@ -93,19 +66,11 @@ console.log(adminRecords)
             console.log(data['Location'])
             console.log(data['productcategory'])
 
-            // console.log(name)
-            // console.log(productname)
-            // console.log(location.toString())
-            // console.log(productcategory)
+         
 
             let matches = true;
 
-            console.log(record.get('Customer name (from Serviceid)')[0].toLowerCase())
-            console.log(record.get('product name (from Serviceid)')[0])
-            console.log(record.get('City (from Serviceid)')[0])
-            console.log(record.get('category (from Serviceid)')[0])
-
-        
+           
           
             if (!record.get('Customer name (from Serviceid)')[0].toLowerCase().includes(data['Customer name']))
             {

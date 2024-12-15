@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
         }
 
        
-
+        const currentDate = new Date()
         const data={
           "Customer name": req.body.fields['Customer name'],
       "Phone Number":req.body.fields['Phone Number'],
@@ -40,6 +40,7 @@ module.exports = async (req, res) => {
       "warranty expiry date": req.body.fields['warranty expiry date'],
       "Complain/Remark": req.body.fields['Complain/Remark'],
       "Request Type": req.body.fields['Request Type'],
+      "date of complain":currentDate.toLocaleDateString()
         }
 
 
