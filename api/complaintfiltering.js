@@ -4,6 +4,17 @@ const category = require('./category');
 // Configure Airtable base
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
 
+function isDateInRange(dateToCheck, startDate, endDate) {
+    const date = new Date(dateToCheck);
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+  
+    // Check if the date is within the range
+    return date >= start && date <= end;
+  }
+  
+
+
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -60,18 +71,15 @@ module.exports = async (req, res) => {
 console.log(adminRecords)
 
         adminRecords.forEach(record => {
-
-            // console.log(data['Customer name'])
-            // console.log(data['productname'])
-            // console.log(data['Location'])
-            // console.log(data['productcategory'])
-
-         
-
             let matches = true;
 
-           
-          
+            if(!isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
+            {
+                console.log(0)
+                matches = false;
+            }
+
+
             if (!record.get('Customer name (from Serviceid)')[0].toLowerCase().includes(data['Customer name']))
             {
                 console.log(1)
@@ -82,13 +90,11 @@ console.log(adminRecords)
         console.log(2)
         matches = false;
     }
-        
     if (record.get('City (from Serviceid)')[0] !== data['Location']) 
     {
         console.log(3)
         matches = false;
-    }
-        
+    }   
     if (record.get('category (from Serviceid)')[0] !== data['productcategory'])
     {
         console.log(4)
@@ -105,23 +111,7 @@ if (matches) {
     }
     
 })
-    //         if (name && !record.get('Customer name (from Serviceid)')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
-    //    //     if (phone && record.get('Phone Number')?.toString() !== phone) matches = false
-    //         if (productname && record.get('product name (from Serviceid)')?.toString() !== productname.toLowerCase()) matches = false
-    //         if(location && record.get('City (from Serviceid)')?.toString() !== location.toLowerCase()) matches= false
-    //         if(productcategory && record.get('category (from Serviceid)')?.toString() !== productcategory.toLowerCase()) matches= false
-    //         if(matches)
-    //         {
-                
-                    
-    //                 if (name) filteredFields['Customer name (from Serviceid)'] = record.get('Customer name (from Serviceid)');
-    //                 if (productname) filteredFields['product name (from Serviceid)'] = record.get('product name (from Serviceid)');
-    //                 if (location) filteredFields['City (from Serviceid)'] = record.get('City (from Serviceid)');
-    //                 if (productcategory) filteredFields['category (from Serviceid)'] = record.get('category (from Serviceid)');
-                    
-    //                 filteredRecords.push(filteredFields); // Include all fields of the record
-                
-            
+  
             
   console.log(filteredRecords);
   
@@ -137,31 +127,4 @@ catch (err) {
 }
 
 
-    //     const fields = record.fields;
-
-        //     // Perform matching based on provided inputs
-        //     let matches = true;
-
-        //  //   console.log(fields);
-
-        //     if (name && !fields.get('Customer Name')?.toString().toLowerCase().includes(name.toLowerCase())) matches = false;
-        //     if (phone && fields.get('Phone Number')?.toString() !== phone) matches = false;
-        //     if (dealer && fields.get('Dealer')?.toString().toLowerCase() !== dealer.toLowerCase()) matches = false;
-        //     if (location && fields.get('City')?.toString().toLowerCase() !== location.toLowerCase()) matches = false;
-        //     if (productcategory && fields.get('category')?.toString().toLowerCase() !== productcategory.toLowerCase()) matches = false;
-        //     if (productname && fields['Product Name']?.toLowerCase() !== productname.toLowerCase()) matches = false;
-
-        //     return matches;
-        // });
-
-        // // Format the response
-        // const formattedRecords = filteredRecords.map(record => ({
-        //     id: record.id, // Airtable's unique record ID
-        //     ...record.fields, // Spread all fields
-        // }));
-
-
   
-    
-
-
