@@ -5,18 +5,18 @@ const category = require('./category');
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
 
 function isDateInRange(dateToCheck, startDate, endDate) {
-    //const date = new Date(dateToCheck);
+    const date = new Date(dateToCheck);
     const start = new Date(startDate);
     const end = new Date(endDate);
 
-    console.log(dateToCheck)
+    console.log(date)
     console.log(start)
     console.log(end)
 
-    console.log(dateToCheck >= start && dateToCheck <= end)
+    console.log(date >= start && date <= end)
   
     // Check if the date is within the range
-    return dateToCheck >= start && dateToCheck <= end;
+    return date >= start && date <= end;
   }
   
 
