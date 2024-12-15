@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    let filteredFields = {};
+ //   let filteredFields = {};
 
     if (req.method === 'OPTIONS') {
         res.status(200).end();
@@ -61,10 +61,10 @@ console.log(adminRecords)
 
         adminRecords.forEach(record => {
 
-            console.log(data['Customer name'])
-            console.log(data['productname'])
-            console.log(data['Location'])
-            console.log(data['productcategory'])
+            // console.log(data['Customer name'])
+            // console.log(data['productname'])
+            // console.log(data['Location'])
+            // console.log(data['productcategory'])
 
          
 
