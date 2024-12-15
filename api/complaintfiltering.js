@@ -13,6 +13,10 @@ function isDateInRange(dateToCheck, startDate, endDate) {
     console.log(start)
     console.log(end)
 
+    date.setHours(0, 0, 0, 0);
+    start.setHours(0, 0, 0, 0);
+    end.setHours(0, 0, 0, 0);
+
     console.log(date >= start && date <= end)
   
     // Check if the date is within the range
