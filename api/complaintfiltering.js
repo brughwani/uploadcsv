@@ -105,7 +105,7 @@ console.log(adminRecords)
     {
 
         console.log(2.5)
-        matches = true;
+        matches = false;
     }
     if (record.get('City')[0] !== data['Location']) 
     {
