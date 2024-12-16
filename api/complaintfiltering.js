@@ -101,7 +101,7 @@ console.log(adminRecords)
     {
 
         console.log(2.5)
-        matches = false;
+        matches = true;
     }
     else   if (record.get('product name')[0] !== data['productname']) 
         {
