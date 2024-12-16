@@ -97,7 +97,7 @@ console.log(adminRecords)
                 matches = false;
             }
   
-    if (data['productname']!=="Select a product")
+    if (data['productname']!=="Select a product" || data['productname']!==undefined)
     {
 
         console.log(2.5)
