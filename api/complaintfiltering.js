@@ -101,7 +101,7 @@ console.log(adminRecords)
         console.log(2)
         matches = false;
     }
-    else if (record.get('product name')[0]==="Select a product" || record.get('product name (from Serviceid)')[0] === undefined)
+    else if (record.get('product name')[0]==="Select a product" || record.get('product name')[0] === undefined)
     {
 
         console.log(2.5)
