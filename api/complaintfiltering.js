@@ -99,6 +99,7 @@ console.log(adminRecords)
   
     if (data['productname']!=="Select a product" || data['productname']!==undefined)
     {
+        console.log(data['productname'])
 
         console.log(2.5)
         matches = false;
