@@ -101,12 +101,7 @@ console.log(adminRecords)
         console.log(2)
         matches = false;
     }
-    else if (record.get('product name')[0]=="Select a product" || record.get('product name')[0] == undefined)
-    {
-
-        console.log(2.5)
-        matches = true;
-    }
+   
     if (record.get('City')[0] !== data['Location']) 
     {
         console.log(3)
@@ -116,6 +111,11 @@ console.log(adminRecords)
     {
         console.log(4)
         matches = false;
+    }
+    else if(record.get('category')[0] === data['productcategory'])
+    {
+        console.log(5)
+        matches = true;
     }
 
 if (matches) {
