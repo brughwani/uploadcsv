@@ -101,11 +101,11 @@ console.log(adminRecords)
         console.log(2)
         matches = false;
     }
-    else if (record.get('product name')[0]=="Select a product" || record.get('product name')[0] == undefined)
+    else if (data['productname']=="Select a product")
     {
 
         console.log(2.5)
-        matches = false;
+        matches = true;
     }
     if (record.get('City')[0] !== data['Location']) 
     {
