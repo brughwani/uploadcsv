@@ -97,11 +97,11 @@ console.log(adminRecords)
                 matches = false;
             }
   
-    if (data['productname']=="Select a product")
+    if (data['productname']!=="Select a product")
     {
 
         console.log(2.5)
-        matches = true;
+        matches = false;
     }
     else   if (record.get('product name')[0] !== data['productname']) 
         {
