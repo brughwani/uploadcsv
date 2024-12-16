@@ -81,7 +81,7 @@ module.exports = async (req, res) => {
 console.log(adminRecords)
 
         adminRecords.forEach(record => {
-            console.log(record.get('date of complain'))
+          //  console.log(record.get('date of complain'))
 
             let matches = true;
             if(!isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
@@ -97,14 +97,14 @@ console.log(adminRecords)
                 matches = false;
             }
   
-    if (data['productname']!=="Select a product")
+    if (data['productname']=="Select a product")
     {
         console.log(data['productname'])
 
         console.log(2.5)
-        matches = false;
+        matches = true;
     }
-    if (record.get('product name')[0] !== data['productname']) 
+ else if (record.get('product name')[0] !== data['productname']) 
         {
             console.log(2)
             matches = false;
