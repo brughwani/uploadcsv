@@ -100,9 +100,8 @@ console.log(adminRecords)
     if (data['productname']=="Select a product")
     {
         console.log(data['productname'])
-
         console.log(2.5)
-        matches = true;
+     //   matches = false;
     }
  else if (record.get('product name')[0] !== data['productname']) 
         {
