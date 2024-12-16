@@ -96,17 +96,18 @@ console.log(adminRecords)
                 console.log(1)
                 matches = false;
             }
-    if (record.get('product name')[0] !== data['productname']) 
-    {
-        console.log(2)
-        matches = false;
-    }
-    else if (data['productname']=="Select a product")
+  
+    if (data['productname']=="Select a product")
     {
 
         console.log(2.5)
-        matches = true;
+        matches = false;
     }
+    else   if (record.get('product name')[0] !== data['productname']) 
+        {
+            console.log(2)
+            matches = false;
+        }
     if (record.get('City')[0] !== data['Location']) 
     {
         console.log(3)
