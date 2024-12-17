@@ -122,14 +122,21 @@ console.log(adminRecords)
                 console.log(2.5)
                 matches = true;
             }
-        else if (record.get('product name') === data['productname']) 
-        {
-            console.log(5)
-            matches = true;
-        }
-        
+            else  if (record.get('product name') === data['productname'] ) 
+                {
+                    console.log(5)
+                    matches = true;
+                }
+                else
+                {
+                    console.log(6)
+                    matches = false;
+                }
 
     }
+   
+        
+
     // if(isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
     //     {
     //         console.log("0")
