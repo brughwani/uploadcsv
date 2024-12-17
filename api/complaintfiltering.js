@@ -90,7 +90,9 @@ console.log(adminRecords)
                 matches = true;
             }
 
-
+console.log(record.get('Customer name'))
+console.log(data['Customer name'])
+console.log(matches)
             if (record.get('Customer name')[0].toLowerCase().includes(data['Customer name']))
             {
                 console.log(1)
@@ -104,6 +106,8 @@ console.log(adminRecords)
     //     matches = true;
     // }
     console.log(record.get('product name')[0])
+    console.log(data['productname'])
+    console.log(matches)
  if (record.get('product name')[0] === data['productname']) 
         {
             console.log(2)
@@ -116,6 +120,7 @@ console.log(adminRecords)
         matches = true;
     }   
     console.log(record.get('category')[0])
+    console.log(matches)
     if (record.get('category')[0] === data['productcategory'])
     {
         console.log(4)
