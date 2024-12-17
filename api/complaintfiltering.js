@@ -93,7 +93,7 @@ console.log(adminRecords)
 console.log(record.get('Customer name'))
 console.log(data['Customer name'])
 console.log(matches)
-            if (record.get('Customer name')[0].toLowerCase().includes(data['Customer name']))
+            if (record.get('Customer name').toLowerCase().includes(data['Customer name']))
             {
                 console.log(1)
                 matches = true;
@@ -105,23 +105,23 @@ console.log(matches)
     //     console.log(2.5)
     //     matches = true;
     // }
-    console.log(record.get('product name')[0])
+    console.log(record.get('product name'))
     console.log(data['productname'])
     console.log(matches)
- if (record.get('product name')[0] === data['productname']) 
+ if (record.get('product name') === data['productname']) 
         {
             console.log(2)
             matches = true;
         }
-        console.log(record.get('City')[0])
+        console.log(record.get('City'))
     if (record.get('City')[0] === data['Location']) 
     {
         console.log(3)
         matches = true;
     }   
-    console.log(record.get('category')[0])
+    console.log(record.get('category'))
     console.log(matches)
-    if (record.get('category')[0] === data['productcategory'])
+    if (record.get('category') === data['productcategory'])
     {
         console.log(4)
         matches = true;
