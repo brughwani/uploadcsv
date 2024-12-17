@@ -130,7 +130,7 @@ if (matches) {
                             ]);
         console.log(1.9)
     }
-    else if(data['productname']=="Select a product")
+    else if(matches && data['productname']==="Select a product")
     {
         filteredRecords.push([record.get('Customer name'), 
             record.get('Phone Number'), 
