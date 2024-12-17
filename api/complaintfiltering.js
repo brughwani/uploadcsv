@@ -84,11 +84,7 @@ console.log(adminRecords)
           //  console.log(record.get('date of complain'))
 
             let matches = false;
-            if(isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
-            {
-                console.log("0")
-                matches = true;
-            }
+          
 
 // console.log(record.get('Customer name'))
 // console.log(data['Customer name'])
@@ -134,8 +130,13 @@ console.log(adminRecords)
         
 
     }
+    // if(isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
+    //     {
+    //         console.log("0")
+    //         matches = true;
+    //     }
 
-if (matches) {
+if (matches && isDateInRange(record.get('date of complain'),data['fromdate'],data['todate'])) {
         filteredRecords.push([record.get('Customer name'), 
                                record.get('Phone Number'), 
                                record.get('product name'), 
