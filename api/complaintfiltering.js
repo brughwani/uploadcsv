@@ -103,16 +103,19 @@ console.log(adminRecords)
     //     console.log(2.5)
     //     matches = true;
     // }
+    console.log(record.get('product name')[0])
  if (record.get('product name')[0] === data['productname']) 
         {
             console.log(2)
             matches = true;
         }
+        console.log(record.get('City')[0])
     if (record.get('City')[0] === data['Location']) 
     {
         console.log(3)
         matches = true;
     }   
+    console.log(record.get('category')[0])
     if (record.get('category')[0] === data['productcategory'])
     {
         console.log(4)
