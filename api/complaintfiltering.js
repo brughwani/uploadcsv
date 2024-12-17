@@ -109,7 +109,7 @@ console.log(adminRecords)
     // console.log(data['productname'])
     // console.log(matches)
  
-    if (record.get('City')[0] === data['Location']) 
+    if (record.get('City') === data['Location']) 
     {
         console.log(3)
         matches = true;
