@@ -97,13 +97,14 @@ console.log(adminRecords)
                 matches = false;
             }
   
-    if (data['productname']=="Select a product")
-    {
-        console.log(data['productname'])
-        console.log(2.5)
-     //   matches = false;
-    }
- else if (record.get('product name')[0] !== data['productname']) 
+//     if (data['productname']=="Select a product")
+//     {
+//         console.log(data['productname'])
+//         console.log(2.5)
+//      //   matches = false;
+//     }
+//  else
+  if (record.get('product name')[0] !== data['productname']) 
         {
             console.log(2)
             matches = false;
@@ -128,6 +129,17 @@ if (matches) {
                                record.get('date of complain')
                             ]);
         console.log(1.9)
+    }
+    else if(data['productname']=="Select a product")
+    {
+        filteredRecords.push([record.get('Customer name'), 
+            record.get('Phone Number'), 
+            record.get('product name'), 
+            record.get('City'), 
+            record.get('category'),
+            record.get('date of complain')
+         ]);
+
     }
     
 })
