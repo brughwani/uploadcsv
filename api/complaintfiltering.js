@@ -103,21 +103,21 @@ console.log(adminRecords)
     //     console.log(2.5)
     //     matches = true;
     // }
- if (record.get('product name')[0] == data['productname']) 
+ if (record.get('product name')[0] === data['productname']) 
         {
             console.log(2)
             matches = true;
         }
-    if (record.get('City')[0] == data['Location']) 
+    if (record.get('City')[0] === data['Location']) 
     {
         console.log(3)
         matches = true;
     }   
-    if (record.get('category')[0] == data['productcategory'])
+    if (record.get('category')[0] === data['productcategory'])
     {
         console.log(4)
         matches = true;
-        if (data['productname']=="Select a product")
+        if (data['productname']==="Select a product")
             {
                 console.log(data['productname'])
                 console.log(2.5)
