@@ -90,9 +90,9 @@ console.log(adminRecords)
                 matches = true;
             }
 
-console.log(record.get('Customer name'))
-console.log(data['Customer name'])
-console.log(matches)
+// console.log(record.get('Customer name'))
+// console.log(data['Customer name'])
+// console.log(matches)
             if (record.get('Customer name').toLowerCase().includes(data['Customer name']))
             {
                 console.log(1)
@@ -105,15 +105,10 @@ console.log(matches)
     //     console.log(2.5)
     //     matches = true;
     // }
-    console.log(record.get('product name'))
-    console.log(data['productname'])
-    console.log(matches)
- if (record.get('product name') === data['productname']) 
-        {
-            console.log(2)
-            matches = true;
-        }
-        console.log(record.get('City'))
+    // console.log(record.get('product name'))
+    // console.log(data['productname'])
+    // console.log(matches)
+ 
     if (record.get('City')[0] === data['Location']) 
     {
         console.log(3)
@@ -131,6 +126,13 @@ console.log(matches)
                 console.log(2.5)
                 matches = true;
             }
+        else if (record.get('product name') === data['productname']) 
+        {
+            console.log(5)
+            matches = true;
+        }
+        
+
     }
 
 if (matches) {
