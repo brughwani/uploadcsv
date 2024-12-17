@@ -133,7 +133,7 @@ console.log(matches)
             }
     }
 
-if (!matches) {
+if (matches) {
         filteredRecords.push([record.get('Customer name'), 
                                record.get('Phone Number'), 
                                record.get('product name'), 
