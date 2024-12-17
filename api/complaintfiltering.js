@@ -83,40 +83,46 @@ console.log(adminRecords)
         adminRecords.forEach(record => {
           //  console.log(record.get('date of complain'))
 
-            let matches = true;
-            if(!isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
+            let matches = false;
+            if(isDateInRange(record.get('date of complain'),data['fromdate'],data['todate']))
             {
                 console.log("0")
-                matches = false;
+                matches = true;
             }
 
 
-            if (!record.get('Customer name')[0].toLowerCase().includes(data['Customer name']))
+            if (record.get('Customer name')[0].toLowerCase().includes(data['Customer name']))
             {
                 console.log(1)
-                matches = false;
+                matches = true;
             }
   
-    if (data['productname']=="Select a product")
-    {
-        console.log(data['productname'])
-        console.log(2.5)
-        matches = true;
-    }
- else if (record.get('product name')[0] !== data['productname']) 
+    // if (data['productname']=="Select a product")
+    // {
+    //     console.log(data['productname'])
+    //     console.log(2.5)
+    //     matches = true;
+    // }
+ if (record.get('product name')[0] == data['productname']) 
         {
             console.log(2)
-            matches = false;
+            matches = true;
         }
-    if (record.get('City')[0] !== data['Location']) 
+    if (record.get('City')[0] == data['Location']) 
     {
         console.log(3)
-        matches = false;
+        matches = true;
     }   
-    if (record.get('category')[0] !== data['productcategory'])
+    if (record.get('category')[0] == data['productcategory'])
     {
         console.log(4)
-        matches = false;
+        matches = true;
+        if (data['productname']=="Select a product")
+            {
+                console.log(data['productname'])
+                console.log(2.5)
+                matches = true;
+            }
     }
 
 if (matches) {
@@ -129,17 +135,17 @@ if (matches) {
                             ]);
         console.log(1.9)
     }
-    else if(matches && data['productname']==="Select a product")
-    {
-        filteredRecords.push([record.get('Customer name'), 
-            record.get('Phone Number'), 
-            record.get('product name'), 
-            record.get('City'), 
-            record.get('category'),
-            record.get('date of complain')
-         ]);
+    // else if(matches && data['productname']==="Select a product")
+    // {
+    //     filteredRecords.push([record.get('Customer name'), 
+    //         record.get('Phone Number'), 
+    //         record.get('product name'), 
+    //         record.get('City'), 
+    //         record.get('category'),
+    //         record.get('date of complain')
+    //      ]);
 
-    }
+    // }
     
 })
   
