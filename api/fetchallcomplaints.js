@@ -24,7 +24,15 @@ module.exports = async (req, res) => {
         view: "Grid view" // Adjust view as necessary
     }).all();
 
+    if(adminRecords.length>0)
+    {
+
     res.status(200).json(adminRecords);
+    }
+    else
+    {
+        res.status(404).json({ message: 'No records found' });
+    }
 }
 
 
