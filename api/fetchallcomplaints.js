@@ -35,11 +35,11 @@ module.exports = async (req, res) => {
     if(retrievedRecords.length>0)
     {
     //  console.log(adminRecords);
-    console.log(retrievedRecords);
+  //   console.log(retrievedRecords);
 
-   console.log(retrievedRecords[fields])
+  //  console.log(retrievedRecords[fields])
 
-      
+      res.status(200).json(retrievedRecords);
 
    // res.status(200).json(adminRecords);
     }
