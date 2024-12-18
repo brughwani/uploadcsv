@@ -33,29 +33,9 @@ module.exports = async (req, res) => {
    if (!selectedFields || selectedFields.length === 0) {
     return res.status(400).json({ message: 'No fields selected' });
   }
-//  const fieldsArray = Array.isArray(selectedFields) ? selectedFields : [selectedFields];
 
-  // if (typeof selectedFields === 'array') {
-  //   // Convert a single field or a stringified array into an array
-   
-  //     selectedFields = JSON.parse(selectedFields);
-  //   } else {
-  //     // Single field
-  //     selectedFields = [selectedFields];
-  //   }
   console.log(selectedFields);
-  // console.log(typeof selectedFields);
-  // if (typeof selectedFields === 'string') {
-  //   // Attempt to parse JSON if it looks like an array
-  //   if (selectedFields.startsWith('[') && selectedFields.endsWith(']')) {
-  //    // selectedFields = JSON.parse(selectedFields);
-  //    selectedFields = selectedFields.slice(1, -1).split(',').map(field => field.trim());
-
-  //   } else {
-  //     // Treat as a single field
-  //     selectedFields = [selectedFields];
-  //   }
-  // }
+  
   console.log(typeof selectedFields);
   if (typeof selectedFields === 'string') {
     try {

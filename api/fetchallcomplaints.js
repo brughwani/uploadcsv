@@ -24,9 +24,21 @@ module.exports = async (req, res) => {
         view: "Grid view" // Adjust view as necessary
     }).all();
 
-    if(adminRecords.length>0)
+    const retrievedRecords = adminRecords.map(record => {
+      return {
+        id:record.id,
+        fields:record.fields
+
+      }
+    });
+
+    if(retrievedRecords.length>0)
     {
-      console.log(adminRecords);
+    //  console.log(adminRecords);
+    console.log(retrievedRecords);
+
+   // console.log(retrievedRecords['fields'])
+
       
 
    // res.status(200).json(adminRecords);
