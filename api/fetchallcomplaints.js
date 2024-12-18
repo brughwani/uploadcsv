@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
     //  console.log(adminRecords);
     console.log(retrievedRecords);
 
-   // console.log(retrievedRecords['fields'])
+   console.log(retrievedRecords['fields'])
 
       
 
