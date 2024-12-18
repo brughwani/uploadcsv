@@ -73,10 +73,10 @@ module.exports = async (req, res) => {
 
      
          // Extract Service IDs and allotment info from Admin table
-         const allotmentMap = adminRecords.reduce((map, record) => {
-             map[record.fields['Service ID']] = record.fields['allotted To'] || null; // Map Service ID to Allotted To
-             return map;
-         }, {});
+        //  const allotmentMap = adminRecords.reduce((map, record) => {
+        //      map[record.fields['Service ID']] = record.fields['allotted To'] || null; // Map Service ID to Allotted To
+        //      return map;
+        //  }, {});
          let filteredRecords = [];
 console.log(adminRecords)
 
