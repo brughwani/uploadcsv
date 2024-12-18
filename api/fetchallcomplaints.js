@@ -26,8 +26,10 @@ module.exports = async (req, res) => {
 
     if(adminRecords.length>0)
     {
+      console.log(adminRecords);
+      
 
-    res.status(200).json(adminRecords);
+   // res.status(200).json(adminRecords);
     }
     else
     {
