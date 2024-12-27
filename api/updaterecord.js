@@ -29,6 +29,7 @@ module.exports = async (req, res) => {
             id: update.id,
             fields: update.fields,
           }));
+          console.log('Request body:', req.body);
 
           console.log('Records to update:', recordsToUpdate);
     
