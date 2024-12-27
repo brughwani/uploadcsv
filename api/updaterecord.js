@@ -15,13 +15,13 @@ module.exports = async (req, res) => {
       return;
     }
   
-    if (req.method !== 'POST') {
+    if (req.method !== 'PATCH') {
       res.status(405).send('Method Not Allowed');
       return;
     }
 
   
-      if (req.method === 'POST') {
+      if (req.method === 'PATCH') {
         const { updates } = req.body;
     
         try {
