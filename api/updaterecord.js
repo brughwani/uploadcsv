@@ -23,6 +23,8 @@ module.exports = async (req, res) => {
   
       if (req.method === 'PATCH') {
         const { updates } = req.body;
+
+        console.log('Updates:', updates);
     
         try {
           const recordsToUpdate = updates.map(update => ({
