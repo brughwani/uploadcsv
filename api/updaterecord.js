@@ -29,6 +29,8 @@ module.exports = async (req, res) => {
             id: update.id,
             fields: update.fields,
           }));
+
+          console.log('Records to update:', recordsToUpdate);
     
           base('admin').update(recordsToUpdate, (err, records) => {
             if (err) {
