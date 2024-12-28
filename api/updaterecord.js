@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
 
   
       if (req.method === 'PATCH') {
-        const { updates } = req.body;
+        var updates  = req.body;
 
         console.log('Updates:', updates);
     
