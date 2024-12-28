@@ -35,13 +35,13 @@ module.exports = async (req, res) => {
 
           // console.log('Records to update:', recordsToUpdate);
     
-          base('admin').update(updates, (err, records) => {
+          base('admin').update(updates, (err, update) => {
             if (err) {
               console.error(err);
               return res.status(500).json({ error: err.message });
             }
     
-            res.status(200).json({ message: 'Records updated successfully!', records });
+            res.status(200).json({ message: 'Records updated successfully!', update });
           });
         } catch (error) {
           res.status(500).json({ error: error.message });
