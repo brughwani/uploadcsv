@@ -27,13 +27,13 @@ module.exports = async (req, res) => {
         console.log('Updates:', updates);
     
         try {
-          const recordsToUpdate = updates.map(update => ({
-            id: update.id,
-            fields: update.fields,
-          }));
-          console.log('Request body:', req.body);
+          // const recordsToUpdate = updates.map(update => ({
+          //   id: update.id,
+          //   fields: update.fields,
+          // }));
+          // console.log('Request body:', req.body);
 
-          console.log('Records to update:', recordsToUpdate);
+          // console.log('Records to update:', recordsToUpdate);
     
           base('admin').update(req.body, (err, records) => {
             if (err) {
