@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
 
           console.log('Records to update:', recordsToUpdate);
     
-          base('admin').update(recordsToUpdate, (err, records) => {
+          base('admin').update(req.body, (err, records) => {
             if (err) {
               console.error(err);
               return res.status(500).json({ error: err.message });
