@@ -32,9 +32,9 @@ module.exports = async (req, res) => {
           //   fields: update.fields,
           // }));
           // console.log('Request body:', req.body);
-  if (!Array.isArray(updates)) {
-      return res.status(400).json({ error: 'Invalid input. Expected an array of updates.' });
-    }
+  // if (!Array.isArray(updates)) {
+  //     return res.status(400).json({ error: 'Invalid input. Expected an array of updates.' });
+  //   }
 
     const updatedRecords = await base('admin').update(updates);
 
