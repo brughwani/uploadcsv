@@ -32,20 +32,33 @@ module.exports = async (req, res) => {
           //   fields: update.fields,
           // }));
           // console.log('Request body:', req.body);
+  if (!Array.isArray(updates)) {
+      return res.status(400).json({ error: 'Invalid input. Expected an array of updates.' });
+    }
 
+    const updatedRecords = await base('admin').update(updates);
+
+    res.status(200).json({
+      message: 'Records updated successfully!',
+      updatedRecords,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
           // console.log('Records to update:', recordsToUpdate);
     
-          base('admin').update(updates, (err, update) => {
-            if (err) {
-              console.error(err);
-              return res.status(500).json({ error: err.message });
-            }
+        //   base('admin').update(updates, (err, update) => {
+        //     if (err) {
+        //       console.error(err);
+        //       return res.status(500).json({ error: err.message });
+        //     }
     
-            res.status(200).json({ message: 'Records updated successfully!', update });
-          });
-        } catch (error) {
-          res.status(500).json({ error: error.message });
-        }
+        //     res.status(200).json({ message: 'Records updated successfully!', update });
+        //   });
+        // } catch (error) {
+        //   res.status(500).json({ error: error.message });
+        // }
       } 
     }
     // const records = updates.map(({ recordId, fieldName, newValue }) => ({
