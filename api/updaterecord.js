@@ -36,7 +36,11 @@ module.exports = async (req, res) => {
   //     return res.status(400).json({ error: 'Invalid input. Expected an array of updates.' });
   //   }
   const recordsToUpdate = [updates];
-  console.log(recordsToUpdate[0]['fields']['alloted to']); // Replaced print with console.log
+  //console.log(recordsToUpdate[0]['fields']['alloted to']);
+  if(recordsToUpdate[0]['fields']=="alloted to")
+  {
+    console.log(123)
+  }
 
 
     const updatedRecords = await base('admin').update(recordsToUpdate);
