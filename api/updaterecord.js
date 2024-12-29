@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     const fieldName = 'Status'; // Change to your desired field name
-    const newValue = 'Pending';
+    const newValue = 'Open';
   
     if (req.method === 'OPTIONS') {
       res.status(200).end();
