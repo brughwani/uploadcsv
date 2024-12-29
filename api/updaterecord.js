@@ -37,7 +37,9 @@ module.exports = async (req, res) => {
   //   }
   const recordsToUpdate = [updates];
   //console.log(recordsToUpdate[0]['fields']['alloted to']);
-  if(recordsToUpdate[0]['fields'].has("alloted to"))
+  if(recordsToUpdate.some(
+    (record) => record.fields && record.fields['alloted to']
+  ))
   {
     console.log(123)
   }
