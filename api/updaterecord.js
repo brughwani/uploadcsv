@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
     (record) => record.fields && record.fields['alloted to']
   ))
   {
-    base('admin').update([{id:recordsToUpdate[0]['id'],fields:{[fieldName]:newValue}}])
+    await base('admin').update([{id:recordsToUpdate[0]['id'],fields:{[fieldName]:newValue}}])
   }
 
 
