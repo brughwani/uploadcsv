@@ -9,6 +9,9 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    const fieldName = 'Status'; // Change to your desired field name
+    const newValue = 'Pending';
   
     if (req.method === 'OPTIONS') {
       res.status(200).end();
@@ -41,7 +44,7 @@ module.exports = async (req, res) => {
     (record) => record.fields && record.fields['alloted to']
   ))
   {
-    console.log(123)
+    base('admin').update([{id:recordsToUpdate[0]['id'],fields:{[fieldName]:newValue}}])
   }
 
 
