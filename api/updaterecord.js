@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
       if (req.method === 'PATCH') {
         var updates  = req.body;
 
-        console.log('Updates:', updates);
+      //  console.log('Updates:', updates);
     
         try {
           // const recordsToUpdate = updates.map(update => ({
@@ -36,6 +36,8 @@ module.exports = async (req, res) => {
   //     return res.status(400).json({ error: 'Invalid input. Expected an array of updates.' });
   //   }
   const recordsToUpdate = [updates];
+  console.log(recordsToUpdate['fields']['alloted to']); // Replaced print with console.log
+
 
     const updatedRecords = await base('admin').update(recordsToUpdate);
 
@@ -88,7 +90,7 @@ module.exports = async (req, res) => {
     //     console.error(error);
     //     res.status(500).json({ error: 'Internal Server Error' });
     //   }
-    
+
 
 
 
