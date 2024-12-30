@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 
         // Validate status if it's being updated
         if (updates.fields && updates.fields.Status) {
-            const allowedStatuses = ['New', 'In Progress', 'Completed', 'On Hold'];
+            const allowedStatuses = ['Open', 'In Progress', 'Resolved'];
             if (!allowedStatuses.includes(updates.fields.Status)) {
                 return res.status(400).json({ error: 'Invalid status value' });
             }
