@@ -21,6 +21,14 @@ module.exports = async (req, res) => {
         const updates = req.body;
         const recordsToUpdate = [updates];
 
+        // Validate status if it's being updated
+        if (updates.fields && updates.fields.Status) {
+            const allowedStatuses = ['New', 'In Progress', 'Completed', 'On Hold'];
+            if (!allowedStatuses.includes(updates.fields.Status)) {
+                return res.status(400).json({ error: 'Invalid status value' });
+            }
+        }
+
         // If this is an allotment update, redirect to the allotment endpoint
         if (recordsToUpdate.some(record => record.fields && record.fields['alloted to'])) {
             const response = await fetch(`/api/updaterecord/${updates.id}/allot`, {
@@ -34,7 +42,7 @@ module.exports = async (req, res) => {
             return res.status(200).json(data);
         }
 
-        // Handle regular updates
+        // Handle regular updates (including status updates)
         const updatedRecords = await base('admin').update(recordsToUpdate);
         res.status(200).json({
             message: 'Records updated successfully!',

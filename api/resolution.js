@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
         try {
             const records = await base('admin').select({
                 filterByFormula: `{alloted to} = '${karigar}'`,
-                sort: [{field: "Created", direction: "desc"}],
+             //   sort: [{field: "Created", direction: "desc"}],
                 view: 'Grid view'
             }).all();
 
@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
     }
 
     // PATCH /api/resolution - update resolution status
-    if (req.method === 'PATCH') {
+   else if (req.method === 'PATCH') {
         const { id, status, resolution_notes } = req.body;
         if (!id) {
             return res.status(400).json({ error: 'Record ID is required' });
