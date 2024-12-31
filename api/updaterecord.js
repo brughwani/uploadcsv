@@ -31,14 +31,19 @@ module.exports = async (req, res) => {
 
         // If this is an allotment update, redirect to the allotment endpoint
         if (recordsToUpdate.some(record => record.fields && record.fields['alloted to'])) {
-            const response = await fetch(`/api/updaterecord/${updates.id}/allot`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updates)
-            });
-            const data = await response.json();
+
+          await base('admin').update([{id:recordsToUpdate[0]['id'],fields:{[fieldName]:newValue}}])
+
+
+            // const response = await fetch(`/api/updaterecord/${updates.id}/allot`, {
+            //     method: 'PATCH',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(updates)
+            // });
+            // const data = await response.json();
+
             return res.status(200).json(data);
         }
 
