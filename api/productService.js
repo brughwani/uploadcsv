@@ -19,56 +19,68 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { category, getCategories, getAllProducts } = req.query;
+    const { level } = req.query;
+    const records = [];
+
+    await base('Products')
+      .select({
+        view: "Grid view"
+      })
+      .eachPage((pageRecords, fetchNextPage) => {
+        records.push(...pageRecords);
+        fetchNextPage();
+      });
+
+
 
     // Get all categories
-    if (getCategories === 'true') {
-      const categories = new Set();
+    // if (getCategories === 'true') {
+    //   const categories = new Set();
       
-      await base('Products')
-        .select({
-          view: "Grid view"
-        })
-        .eachPage((records, fetchNextPage) => {
-          records.forEach(record => {
-            const category = record.get('Category');
-            if (category) {
-              categories.add(category);
-            }
-          });
-          fetchNextPage();
-        });
+    //   await base('Products')
+    //     .select({
+    //       view: "Grid view"
+    //     })
+    //     .eachPage((records, fetchNextPage) => {
+    //       records.forEach(record => {
+    //         const category = record.get('Category');
+    //         if (category) {
+    //           categories.add(category);
+    //         }
+    //       });
+    //       fetchNextPage();
+    //     });
 
-      return res.status(200).json(Array.from(categories));
-    }
+    //   return res.status(200).json(Array.from(categories));
+    // }
 
-    // Get all products grouped by category
-    if (getAllProducts === 'true') {
-        const productsByBrand = {};
+    // // Get all products grouped by category
+    // if (getAllProducts === 'true') {
+    //     const productsByBrand = {};
       
-      //const productsByCategory = {};
+    //   //const productsByCategory = {};
       
-      await base('Products')
-        .select({
-          view: "Grid view"
-        })
-        .eachPage((records, fetchNextPage) => {
-          records.forEach(record => {
+    //   await base('Products')
+    //     .select({
+    //       view: "Grid view"
+    //     })
+    //     .eachPage((records, fetchNextPage) => {
+    //       records.forEach(record => {
 
-            const brand=record.get('Brand name')
-            const productName= record.get('Product Name')
-            const category=record.get('Category')
+    //         const brand=record.get('Brand name')
+    //         const productName= record.get('Product Name')
+    //         const category=record.get('Category')
 
-            if (!productsByBrand[brand]) {
-                productsByBrand[brand] = {};
-              }
-              if (!productsByBrand[brandName][category]) {
-                productsByBrand[brandName][category] = [];
-              }
-              productsByBrand[brandName][category].push({
-                id: record.id,
-                name: productName
-            });
+    //         if (!productsByBrand[brand]) {
+    //             productsByBrand[brand] = {};
+    //           }
+    //           if (!productsByBrand[brandName][category]) {
+    //             productsByBrand[brandName][category] = [];
+    //           }
+    //           productsByBrand[brandName][category].push({
+    //             id: record.id,
+    //             name: productName
+    //         });
             
             // const productInfo = {
             //   id: record.id,
@@ -88,8 +100,9 @@ module.exports = async (req, res) => {
             //   productsByBrand[brand][category].push(productInfo);
         
             
-          });
-          fetchNextPage();
+        //   });
+        //   fetchNextPage();
+
           switch(level) {
             case 'brands':
               response = Object.keys(productsByBrand);
@@ -105,7 +118,7 @@ module.exports = async (req, res) => {
           }
 
       return res.status(200).json(response);
-    })
+    
     }
     // // Get products by specific category
     // if (category) {
@@ -139,7 +152,7 @@ module.exports = async (req, res) => {
 
     // If no parameters provided, return error
    // res.status(400).json({ error: 'Missing required query parameters' });
-    }
+    
    catch (error) {
     console.error("Server error:", error);
     res.status(500).json({ error: 'Server error' });
