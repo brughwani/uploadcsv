@@ -104,7 +104,7 @@ module.exports = async (req, res) => {
               response = productsByBrand;
           }
 
-      return res.status(200).json(productsByCategory);
+      return res.status(200).json(response);
     })
     }
     // // Get products by specific category
