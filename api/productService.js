@@ -19,17 +19,39 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { level } = req.query;
-    const records = [];
+    const { level, brand, category } = req.query;
+    const productsByBrand = {};
+    let response = {};
 
     await base('Products')
       .select({
-        view: "Grid view"
+        view: "Grid view",
+        filterByFormula: brand 
+        ? `AND({Brand name}='${brand}', {Category}='${category || ''}')`
+        : ''
       })
-      .eachPage((pageRecords, fetchNextPage) => {
-        records.push(...pageRecords);
-        fetchNextPage();
-      });
+      .eachPage(
+        (records, fetchNextPage) => {
+            records.forEach(record => {
+              const brandName = record.get('Brand name');
+              const categoryName = record.get('Category');
+              const productName = record.get('Product Name');
+              
+              if (!productsByBrand[brandName]) {
+                productsByBrand[brandName] = {};
+              }
+              if (!productsByBrand[brandName][categoryName]) {
+                productsByBrand[brandName][categoryName] = [];
+              }
+              productsByBrand[brandName][categoryName].push({
+                id: record.id,
+                name: productName,
+                price: record.get('Price') || '',
+                description: record.get('Description') || ''
+              });
+            });
+            fetchNextPage();
+          });
 
 
 
@@ -105,6 +127,7 @@ module.exports = async (req, res) => {
 
           switch(level) {
             case 'brands':
+
               response = Object.keys(productsByBrand);
               break;
             case 'categories':
