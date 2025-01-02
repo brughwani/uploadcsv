@@ -44,7 +44,9 @@ module.exports = async (req, res) => {
 
     // Get all products grouped by category
     if (getAllProducts === 'true') {
-      const productsByCategory = {};
+        const productsByBrand = {};
+      
+      //const productsByCategory = {};
       
       await base('Products')
         .select({
@@ -52,61 +54,94 @@ module.exports = async (req, res) => {
         })
         .eachPage((records, fetchNextPage) => {
           records.forEach(record => {
-            const category = record.get('Category');
-            const productInfo = {
-              id: record.id,
-              productName: record.get('Product Name'),
-              category: category
-            };
-            
-            if (category) {
-              if (!productsByCategory[category]) {
-                productsByCategory[category] = [];
+
+            const brand=record.get('Brand name')
+            const productName= record.get('Product Name')
+            const category=record.get('Category')
+
+            if (!productsByBrand[brand]) {
+                productsByBrand[brand] = {};
               }
-              productsByCategory[category].push(productInfo);
-            }
+              if (!productsByBrand[brandName][category]) {
+                productsByBrand[brandName][category] = [];
+              }
+              productsByBrand[brandName][category].push({
+                id: record.id,
+                name: productName
+            });
+            
+            // const productInfo = {
+            //   id: record.id,
+             
+            // };
+            
+            // if (!productsByBrand[brand]) {
+            //     productsByBrand[brand] = {};
+            //   }
+              
+            //   // Initialize category array within brand if it doesn't exist
+            //   if (!productsByBrand[brand][category]) {
+            //     productsByBrand[brand][category] = [];
+            //   }
+              
+            //   // Add product to appropriate brand and category
+            //   productsByBrand[brand][category].push(productInfo);
+        
+            
           });
           fetchNextPage();
-        });
+          switch(level) {
+            case 'brands':
+              response = Object.keys(productsByBrand);
+              break;
+            case 'categories':
+              response = brand ? Object.keys(productsByBrand[brand] || {}) : [];
+              break;
+            case 'products':
+              response = brand && category ? productsByBrand[brand]?.[category] || [] : [];
+              break;
+            default:
+              response = productsByBrand;
+          }
 
       return res.status(200).json(productsByCategory);
+    })
     }
+    // // Get products by specific category
+    // if (category) {
+    //   const records = [];
+    //   await new Promise((resolve, reject) => {
+    //     base('Products')
+    //       .select({
+    //         filterByFormula: `{Category} = "${category}"`,
+    //         view: "Grid view"
+    //       })
+    //       .eachPage(
+    //         function page(recordBatch, fetchNextPage) {
+    //           recordBatch.forEach(record => {
+    //             records.push({
+    //               id: record.id,
+    //               productName: record.get('Product Name'),
+    //               category: record.get('Category')
+    //             });
+    //           });
+    //           fetchNextPage();
+    //         },
+    //         function done(err) {
+    //           if (err) reject(err);
+    //           else resolve();
+    //         }
+    //       );
+    //   });
 
-    // Get products by specific category
-    if (category) {
-      const records = [];
-      await new Promise((resolve, reject) => {
-        base('Products')
-          .select({
-            filterByFormula: `{Category} = "${category}"`,
-            view: "Grid view"
-          })
-          .eachPage(
-            function page(recordBatch, fetchNextPage) {
-              recordBatch.forEach(record => {
-                records.push({
-                  id: record.id,
-                  productName: record.get('Product Name'),
-                  category: record.get('Category')
-                });
-              });
-              fetchNextPage();
-            },
-            function done(err) {
-              if (err) reject(err);
-              else resolve();
-            }
-          );
-      });
-
-      return res.status(200).json(records);
-    }
+    //   return res.status(200).json(records);
+    // }
 
     // If no parameters provided, return error
-    res.status(400).json({ error: 'Missing required query parameters' });
-
-  } catch (error) {
+   // res.status(400).json({ error: 'Missing required query parameters' });
+    }
+   catch (error) {
     console.error("Server error:", error);
     res.status(500).json({ error: 'Server error' });
   }
-};
+  }
