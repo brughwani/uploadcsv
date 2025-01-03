@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
       "address": req.body.fields['address'],
       "pincode": req.body.fields['pincode'],
       "City": req.body.fields['City'],
+      "Brand": req.body.fields['Brand'],
       "category": req.body.fields['category'],
       "product name": req.body.fields['product name'],
      "Purchase Date": req.body.fields['Purchase Date'],
