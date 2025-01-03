@@ -47,7 +47,9 @@ module.exports = async (req, res) => {
 
           console.log('Data to be inserted:', data);
 
-    
+          console.log("Request body:", req.body);
+          console.log("Headers:", req.headers);
+          console.log("Response:", response.data);
     // const record = await base('Service').create(data, {typecast: true});
     // const adminrecord=await base('admin').create(data, {typecast: true});
 
