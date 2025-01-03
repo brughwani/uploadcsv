@@ -80,7 +80,7 @@ module.exports = async (req, res) => {
     }
 
     // If successful, send the ID of the created record as the response
-    res.status(200).json({serviceRecord: record.getId(),adminRecord:adminrecord.getId() });
+    res.status(200).json({serviceRec: serviceRecord.getId(),adminRec:adminRecord.getId() });
   } catch (error) {
     res.status(500).json({ 
       error: error.message || 'Internal Server Error'
