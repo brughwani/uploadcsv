@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
     const { level, brand, category } = req.query;
     const productsByBrand = {};
     let response = {};
+    console.log(brand)
 
     await base('Products')
       .select({
@@ -46,8 +47,8 @@ module.exports = async (req, res) => {
               productsByBrand[brandName][categoryName].push({
                 id: record.id,
                 name: productName,
-                price: record.get('Price') || '',
-                description: record.get('Description') || ''
+                // price: record.get('Price') || '',
+                // description: record.get('Description') || ''
               });
             });
             fetchNextPage();
