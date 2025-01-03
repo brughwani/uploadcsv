@@ -27,9 +27,9 @@ module.exports = async (req, res) => {
     await base('Products')
       .select({
         view: "Grid view",
-        filterByFormula: brand 
-        ? `AND({Brand name}='${brand}', {Category}='${category || ''}')`
-        : ''
+        // filterByFormula: brand 
+        // ? `AND({Brand name}='${brand}', {Category}='${category || ''}')`
+        // : ''
       })
       .eachPage(
         (records, fetchNextPage) => {
