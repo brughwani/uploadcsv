@@ -3,58 +3,59 @@ const axios = require('axios');
 
 // Configure the Airtable base with your API key and base ID
 const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.AIRTABLE_BASE_ID);
-async function getFields() {
-  const tableName = 'Service';
-  // const response = await axios.get(`https://api.airtable.com/v0/meta/bases/${process.env.AIRTABLE_BASE_ID}/tables`, {
-  //   headers: { Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}` }
-  // });
+// module.exports = async getFields(req, res) {
+//   const tableName = 'Service';
+//   // const response = await axios.get(`https://api.airtable.com/v0/meta/bases/${process.env.AIRTABLE_BASE_ID}/tables`, {
+//   //   headers: { Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}` }
+//   // });
 
 
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Allows requests from any origin
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Allowed HTTP methods
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allowed headers
+//   // Set CORS headers
+//   res.setHeader('Access-Control-Allow-Origin', '*'); // Allows requests from any origin
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Allowed HTTP methods
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allowed headers
 
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+//   // Handle preflight requests
+//   if (req.method === 'OPTIONS') {
+//     return res.status(200).end();
+//   }
 
-  try {
-    // Make API call to Airtable meta endpoint to get schema
-    const response = await axios.get(
-      `https://api.airtable.com/v0/meta/bases/${process.env.AIRTABLE_BASE_ID}/tables`,
-      {
-        headers: { Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}` },
-      }
-    );
+//   try {
+//     // Make API call to Airtable meta endpoint to get schema
+//     const response = await axios.get(
+//       `https://api.airtable.com/v0/meta/bases/${process.env.AIRTABLE_BASE_ID}/tables`,
+//       {
+//         headers: { Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}` },
+//       }
+//     );
 
-    // Extract and print fields from the table
-    const tables = response.data.tables;
-    tables.forEach((table) => {
-      console.log(`Table Name: ${table.name}`);
-      console.log("Fields:");
-      table.fields.forEach((field) => {
-        console.log(`- ${field.name} (${field.type})`);
-      });
-    });
+//     // Extract and print fields from the table
+//     const tables = response.data.tables;
+//     tables.forEach((table) => {
+//       console.log(`Table Name: ${table.name}`);
+//       console.log("Fields:");
+//       table.fields.forEach((field) => {
+//         console.log(`- ${field.name} (${field.type})`);
+//       });
+//     });
 
-    // Return the schema to the client
-    res.status(200).json(tables);
-  } catch (error) {
-    console.error("Error fetching fields:", error.message);
-    res.status(500).json({ error: "Failed to fetch fields" });
-  }
+//     // Return the schema to the client
+//     res.status(200).json(tables);
+//   } catch (error) {
+//     console.error("Error fetching fields:", error.message);
+//     res.status(500).json({ error: "Failed to fetch fields" });
+//   }
 
- // console.log("Fields:", response.data.tables.find(table => table.name === tableName).fields);
-}
+//  // console.log("Fields:", response.data.tables.find(table => table.name === tableName).fields);
+// }
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Cache-Control', 'no-store, max-age=0');
-    getFields();
+    //getFields();
+
    
     if (req.method === 'OPTIONS') {
       res.status(200).end();
@@ -72,6 +73,19 @@ module.exports = async (req, res) => {
         if (!req.body.fields) {
           throw new Error('Missing fields object in request body');
         }
+        const schemaResponse = await axios.get(
+          `https://api.airtable.com/v0/meta/bases/${process.env.AIRTABLE_BASE_ID}/tables`,
+          {
+            headers: { Authorization: `Bearer ${process.env.AIRTABLE_API_KEY }` },
+          }
+        );
+    
+        const tables = schemaResponse.data.tables;
+        const complaintsTable = tables.find((table) => table.name === "Service");
+        const fields = complaintsTable.fields.map((field) => field.name);
+    
+        console.log("Complaint Table Fields:", fields);
+    
 
        
         const currentDate = new Date()
