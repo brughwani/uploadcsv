@@ -8,6 +8,7 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Cache-Control', 'no-store, max-age=0');
 
   
     if (req.method === 'OPTIONS') {
@@ -19,6 +20,7 @@ module.exports = async (req, res) => {
       res.status(405).send('Method Not Allowed');
       return;
     }
+    
     try {
         console.log('Request body:', req.body);
     
