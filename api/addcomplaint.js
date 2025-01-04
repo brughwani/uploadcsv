@@ -110,7 +110,7 @@ module.exports = async (req, res) => {
 
           console.log("Request body:", req.body);
           console.log("Headers:", req.headers);
-          console.log("Response:", res.data);
+        //  console.log("Response:", res.data);
     // const record = await base('Service').create(data, {typecast: true});
     // const adminrecord=await base('admin').create(data, {typecast: true});
 
