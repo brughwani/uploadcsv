@@ -1,16 +1,24 @@
 const Airtable = require('airtable');
+const axios = require('axios');
 
 // Configure the Airtable base with your API key and base ID
 const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.AIRTABLE_BASE_ID);
+async function getFields() {
+  const tableName = 'Service';
+  const response = await axios.get(`https://api.airtable.com/v0/meta/bases/${process.env.AIRTABLE_BASE_ID}/tables`, {
+    headers: { Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}` }
+  });
 
+  console.log("Fields:", response.data.tables.find(table => table.name === tableName).fields);
+}
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Cache-Control', 'no-store, max-age=0');
-
-  
+    getFields();
+   
     if (req.method === 'OPTIONS') {
       res.status(200).end();
       return;
