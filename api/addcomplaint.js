@@ -109,7 +109,7 @@ module.exports = async (req, res) => {
       "warranty expiry date": req.body.fields['warranty expiry date'],
       "Complain/Remark": req.body.fields['Complain/Remark'],
       "Request Type": req.body.fields['Request Type'],
-    //  "date of complain":currentDate.toLocaleDateString()
+    "date of complain":req.body.fields['date of complain'],
         }
 
 
@@ -124,7 +124,7 @@ module.exports = async (req, res) => {
 
    var  serviceRecord = await base('Service').create(data, { typecast: true });
     console.log(5.5)
-    adminRecord = await base('admin').create(data, { typecast: true });
+   var adminRecord = await base('admin').create(data, { typecast: true });
       
     // let serviceRecord = null;
     // try {
