@@ -123,6 +123,7 @@ module.exports = async (req, res) => {
     // const adminrecord=await base('admin').create(data, {typecast: true});
 
     serviceRecord = await base('Service').create(data, { typecast: true });
+    console.log(5.5)
 
     let serviceRecord = null;
     try {
