@@ -50,7 +50,7 @@ const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.e
 // }
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    
+
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -121,6 +121,8 @@ module.exports = async (req, res) => {
         //  console.log("Response:", res.data);
     // const record = await base('Service').create(data, {typecast: true});
     // const adminrecord=await base('admin').create(data, {typecast: true});
+
+    serviceRecord = await base('Service').create(data, { typecast: true });
 
     let serviceRecord = null;
     try {
