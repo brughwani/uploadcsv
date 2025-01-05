@@ -69,22 +69,28 @@ module.exports = async (req, res) => {
     
     try {
         console.log('Request body:', req.body);
+
+        console.log(1)
     
         if (!req.body.fields) {
           throw new Error('Missing fields object in request body');
         }
+        console.log(2)
+    
         const schemaResponse = await axios.get(
           `https://api.airtable.com/v0/meta/bases/${process.env.AIRTABLE_BASE_ID}/tables`,
           {
             headers: { Authorization: `Bearer ${process.env.AIRTABLE_API_KEY }` },
           }
         );
-    
+    console.log(3)
         const tables = schemaResponse.data.tables;
         const complaintsTable = tables.find((table) => table.name === "Service");
         const fields = complaintsTable.fields.map((field) => field.name);
     
         console.log("Complaint Table Fields:", fields);
+
+        console.log(4)
     
 
        
@@ -107,6 +113,7 @@ module.exports = async (req, res) => {
 
 
           console.log('Data to be inserted:', data);
+          console.log(5);
 
           console.log("Request body:", req.body);
           console.log("Headers:", req.headers);
