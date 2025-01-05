@@ -122,7 +122,7 @@ module.exports = async (req, res) => {
     // const record = await base('Service').create(data, {typecast: true});
     // const adminrecord=await base('admin').create(data, {typecast: true});
 
-    serviceRecord = await base('Service').create(data, { typecast: true });
+   var  serviceRecord = await base('Service').create(data, { typecast: true });
     console.log(5.5)
     adminRecord = await base('admin').create(data, { typecast: true });
       
