@@ -109,7 +109,7 @@ module.exports = async (req, res) => {
       "warranty expiry date": req.body.fields['warranty expiry date'],
       "Complain/Remark": req.body.fields['Complain/Remark'],
       "Request Type": req.body.fields['Request Type'],
-      "date of complain":currentDate.toLocaleDateString()
+    //  "date of complain":currentDate.toLocaleDateString()
         }
 
 
@@ -124,34 +124,35 @@ module.exports = async (req, res) => {
 
     serviceRecord = await base('Service').create(data, { typecast: true });
     console.log(5.5)
-
-    let serviceRecord = null;
-    try {
-      serviceRecord = await base('Service').create(data, { typecast: true });
-      console.log('Service record created:', serviceRecord.getId());
-    } catch (serviceError) {
-      console.error('Service table error:', serviceError);
-      throw new Error(`Service creation failed: ${serviceError.message}`);
-    }
-
-    let adminRecord = null;
-    try {
-      adminRecord = await base('admin').create(data, { typecast: true });
-      console.log('Admin record created:', adminRecord.getId());
-    } catch (adminError) {
-      console.error('Admin table error:', adminError);
+    adminRecord = await base('admin').create(data, { typecast: true });
       
-      // Rollback service record if admin record fails
-      if (serviceRecord) {
-        try {
-          await base('Service').destroy(serviceRecord.getId());
-          console.log('Rolled back service record due to admin record failure');
-        } catch (rollbackError) {
-          console.error('Rollback failed:', rollbackError);
-        }
-      }
-      throw new Error(`Admin creation failed: ${adminError.message}`);
-    }
+    // let serviceRecord = null;
+    // try {
+    //   serviceRecord = await base('Service').create(data, { typecast: true });
+    //   console.log('Service record created:', serviceRecord.getId());
+    // } catch (serviceError) {
+    //   console.error('Service table error:', serviceError);
+    //   throw new Error(`Service creation failed: ${serviceError.message}`);
+    // }
+
+    // let adminRecord = null;
+    // try {
+    //   adminRecord = await base('admin').create(data, { typecast: true });
+    //   console.log('Admin record created:', adminRecord.getId());
+    // } catch (adminError) {
+    //   console.error('Admin table error:', adminError);
+      
+    //   // Rollback service record if admin record fails
+    //   if (serviceRecord) {
+    //     try {
+    //       await base('Service').destroy(serviceRecord.getId());
+    //       console.log('Rolled back service record due to admin record failure');
+    //     } catch (rollbackError) {
+    //       console.error('Rollback failed:', rollbackError);
+    //     }
+    //   }
+    //   throw new Error(`Admin creation failed: ${adminError.message}`);
+    // }
 
     // If successful, send the ID of the created record as the response
     res.status(200).json({serviceRec: serviceRecord.getId(),adminRec:adminRecord.getId() });
