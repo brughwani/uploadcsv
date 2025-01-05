@@ -140,7 +140,7 @@ module.exports = async (req, res) => {
             default:
               response = productsByBrand;
           }
-          console.log(response)
+        //  console.log(response)
 
       return res.status(200).json(response);
     
