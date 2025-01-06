@@ -2,6 +2,18 @@ const Airtable = require('airtable');
 
 const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.AIRTABLE_BASE_ID);
 
+async function getCurrentRecordDetails(recordId) {
+  try {
+    const record = await base('admin').find(recordId);
+    return {
+      currentStatus: record.fields.Status || null,
+      currentAllotment: record.fields['alloted to'] || null
+    };
+  } catch (error) {
+    console.error('Error fetching record details:', error);
+    throw error;
+  }
+}
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -15,6 +27,25 @@ module.exports = async (req, res) => {
         res.status(200).end();
         return;
     }
+
+    if (req.method === 'GET') {
+      const { recordId } = req.query;
+      if (!recordId) {
+          return res.status(400).json({ error: 'Record ID is required' });
+      }
+
+      try {
+          const record = await base('admin').find(recordId);
+          return res.status(200).json({
+              currentStatus: record.fields.Status || "",
+              currentAllotment: record.fields['alloted to'] || "",
+              recordId: record.id
+          });
+      } catch (error) {
+          console.error('Error fetching record:', error);
+          return res.status(500).json({ error: error.message });
+      }
+  }
   
     if (req.method !== 'PATCH') {
         res.status(405).send('Method Not Allowed');
