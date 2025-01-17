@@ -79,6 +79,8 @@ module.exports = async (req, res) => {
           return res.status(500).json({ error: error.message });
       }
   }
+
+  if(req.method === 'PATCH') {
   
     if (req.method !== 'PATCH') {
         res.status(405).send('Method Not Allowed');
@@ -87,12 +89,12 @@ module.exports = async (req, res) => {
 
     try {
         const updates = req.body;
-        if (!update.id || !update.fields) {
+        if (!updates.id || !updates.fields) {
           return res.status(400).json({ error: 'Invalid update format' });
         }
         const recordToUpdate = {
-          id: update.id,
-          fields: update.fields
+          id: updates.id,
+          fields: updates.fields
         };
 
      //   const recordsToUpdate = [updates];
@@ -138,7 +140,7 @@ module.exports = async (req, res) => {
     
     return res.status(200).json({
       message: 'Records updated successfully',
-      records: updatedRecords[0]
+      records: updatedRecords
     });
 
 
@@ -148,6 +150,8 @@ module.exports = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+}
+
 
 
 
