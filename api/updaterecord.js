@@ -82,11 +82,7 @@ module.exports = async (req, res) => {
 
   if(req.method === 'PATCH') {
   
-    if (req.method !== 'PATCH') {
-        res.status(405).send('Method Not Allowed');
-        return;
-    }
-
+    
     try {
         const updates = req.body;
         if (!updates.id || !updates.fields) {
@@ -97,36 +93,7 @@ module.exports = async (req, res) => {
           fields: updates.fields
         };
 
-     //   const recordsToUpdate = [updates];
-
-     //   const currentDetails = await getCurrentRecordDetails(updates.id);
   
-
-        // Validate status if it's being updated
-    //     // if (updates.fields && updates.fields.Status) {
-    //     //     const allowedStatuses = ['Open', 'In Progress', 'Resolved'];
-    //     //     if (!allowedStatuses.includes(updates.fields.Status)) {
-    //     //         return res.status(400).json({ error: 'Invalid status value' });
-    //     //     }
-    //     // }
-    //     // // If this is an allotment update, redirect to the allotment endpoint
-    //     // if (recordsToUpdate.some(record => record.fields && record.fields['alloted to'])) {
-    //     //   await base('admin').update([{id:recordsToUpdate[0]['id'],fields:{[fieldName]:newValue}}])
-    //     // }
-
-    //     // Handle regular updates (including status updates)
-    //     const updatedRecords = await base('admin').update(recordsToUpdate);
-    //     res.status(200).json({
-    //         message: 'Records updated successfully!',
-    //         updatedRecords,
-    //     });
-
-   // const updates = req.body;
-    // if (!Array.isArray(updates)) {
-    //   return res.status(400).json({ error: 'Updates must be an array' });
-    // }
-
-    // Validate status for all updates
     const allowedStatuses = ['Open', 'In Progress', 'Resolved'];
     const invalidUpdates = updates.filter(
       update => update.fields?.Status && !allowedStatuses.includes(update.fields.Status)
@@ -136,7 +103,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Invalid status value found in updates' });
     }
 
-    const updatedRecords = await base('admin').update(recordsToUpdate);
+    const updatedRecords = await base('admin').update(recordToUpdate);
     
     return res.status(200).json({
       message: 'Records updated successfully',
