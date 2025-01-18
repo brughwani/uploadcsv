@@ -94,14 +94,14 @@ module.exports = async (req, res) => {
         };
 
   
-    const allowedStatuses = ['Open', 'In Progress', 'Resolved'];
-    const invalidUpdates = updates.filter(
-      update => update.fields?.Status && !allowedStatuses.includes(update.fields.Status)
-    );
+    // const allowedStatuses = ['Open', 'In Progress', 'Resolved'];
+    // const invalidUpdates = updates.filter(
+    //   update => update.fields?.Status && !allowedStatuses.includes(update.fields.Status)
+    // );
 
-    if (invalidUpdates.length > 0) {
-      return res.status(400).json({ error: 'Invalid status value found in updates' });
-    }
+    // if (invalidUpdates.length > 0) {
+    //   return res.status(400).json({ error: 'Invalid status value found in updates' });
+    // }
 
     const updatedRecords = await base('admin').update(recordToUpdate);
     
