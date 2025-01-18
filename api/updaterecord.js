@@ -81,7 +81,7 @@ module.exports = async (req, res) => {
 
   
    
-    const updatedRecords = await base('admin').update(recordToUpdate);
+    const updatedRecords = await base('admin').updateAsync(recordToUpdate);
     
     return res.status(200).json({
       message: 'Records updated successfully',
