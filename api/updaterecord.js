@@ -10,11 +10,7 @@ async function getCurrentRecordDetails(recordIds) {
 
     const recordIdsArray = Array.isArray(recordIds) ? recordIds : recordIds.split(',');
     
-    // const records = await base('admin')
-    //   .select({
-    //     filterByFormula: `OR(${recordIdsArray.map(id => `RECORD_ID()='${id}'`).join(',')})`
-    //   })
-    //   .all();
+   
     const records = await base('admin')
     .select({
       filterByFormula: `OR(${recordIdsArray.map(id => `RECORD_ID()='${id}'`).join(',')})`,
@@ -63,17 +59,7 @@ module.exports = async (req, res) => {
       //  const recordIdsArray = Array.isArray(recordIds) ? recordIds : recordIds.split(',');
       const currentDetails = await getCurrentRecordDetails(recordIds);
       return res.status(200).json({success:true,currentDetails});
-    // const records = await base('admin')
-    //   .select({
-    //     filterByFormula: `OR(${recordIdsArray.map(id => `RECORD_ID()='${id}'`).join(',')})`
-    //   })
-    //   .all();
-
-    // return records.map(record => ({
-    //   recordId: record.id,
-    //   ...(fields.includes('Status') && { currentStatus: record.fields.Status || null }),
-    //   ...(fields.includes('alloted to') && { currentAllotment: record.fields['alloted to'] || null })
-    // }));
+   
       } catch (error) {
           console.error('Error fetching record:', error);
           return res.status(500).json({ error: error.message });
@@ -94,15 +80,7 @@ module.exports = async (req, res) => {
         };
 
   
-    // const allowedStatuses = ['Open', 'In Progress', 'Resolved'];
-    // const invalidUpdates = updates.filter(
-    //   update => update.fields?.Status && !allowedStatuses.includes(update.fields.Status)
-    // );
-
-    // if (invalidUpdates.length > 0) {
-    //   return res.status(400).json({ error: 'Invalid status value found in updates' });
-    // }
-
+   
     const updatedRecords = await base('admin').update(recordToUpdate);
     
     return res.status(200).json({
