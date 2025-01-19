@@ -92,6 +92,8 @@ module.exports = async (req, res) => {
    
 //    const updatedRecords = await base('admin').update(updates)
 
+console.log(updates)
+
 const updatedRecords = await base('admin').update([
   {
     id: updates.id,
