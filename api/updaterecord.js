@@ -79,15 +79,18 @@ module.exports = async (req, res) => {
         //   fields: updates.fields
         // };
 
-  
+        const batch = base('admin').batch();
+        updates.forEach(update => batch.update(update.id, update.fields));
+    
+        const updatedRecords = await batch.run();
+    
    
-    const updatedRecords = await base('admin').update(updates)
+//    const updatedRecords = await base('admin').update(updates)
 
       return res.status(200).json({
         message: 'Records updated successfully',
         records: updatedRecords
       });
-
 
     } catch (error) {
         console.error(error);
