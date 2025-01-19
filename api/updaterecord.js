@@ -74,25 +74,19 @@ module.exports = async (req, res) => {
         if (!updates.id || !updates.fields) {
           return res.status(400).json({ error: 'Invalid update format' });
         }
-        const recordToUpdate = {
-          id: updates.id,
-          fields: updates.fields
-        };
+        // const recordToUpdate = {
+        //   id: updates.id,
+        //   fields: updates.fields
+        // };
 
   
    
-    const updatedRecords = await base('admin').update(recordToUpdate).then((resp)=>{
-const updatedRecords = resp;
+    const updatedRecords = await base('admin').update(updates)
+
       return res.status(200).json({
         message: 'Records updated successfully',
-        records: updatedRecords[0]
+        records: updatedRecords
       });
-    }).catch((error)=>{
-      return res.status(500).json({ error: error.message });
-    });
-    
-    
-
 
 
     } catch (error) {
