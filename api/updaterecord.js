@@ -83,14 +83,22 @@ module.exports = async (req, res) => {
         // updates.forEach(update => batch.update(update.id, update.fields));
     
         // const updatedRecords = await batch.run();
-        const promises = updates.map(update => {
-          return base('admin').update(update.id, update.fields);
-        });
+        // const promises = updates.map(update => {
+        //   return base('admin').update(update.id, update.fields);
+        // });
     
-        const updatedRecords = await Promise.all(promises);
+      //  const updatedRecords = await Promise.all(promises);
     
    
 //    const updatedRecords = await base('admin').update(updates)
+
+const updatedRecords = await base('admin').update([
+  {
+    id: updates.id,
+    fields: updates.fields
+  }
+])
+
 
       return res.status(200).json({
         message: 'Records updated successfully',
