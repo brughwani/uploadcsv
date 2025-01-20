@@ -59,9 +59,9 @@ if (!admin.apps.length) {
       const snapshot = await firestore.collection('Products').get();
       snapshot.forEach(doc => {
         const data = doc.data();
-        const brandName = data['Brand name'];
+        const brandName = data['Brand'];
         const categoryName = data['Category'];
-        const productName = data['Product Name'];
+        const productName = data['Product name'];
   
         if (!productsByBrand[brandName]) {
           productsByBrand[brandName] = {};
