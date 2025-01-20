@@ -48,6 +48,8 @@ module.exports = async (req, res) => {
         'salary': salary
       } = req.body.fields;
 
+      console.log('Data to be inserted:', req.body.fields);
+
       const data = {
         "First Name": firstName,
         "Last name": lastName,
@@ -58,6 +60,7 @@ module.exports = async (req, res) => {
         "personal phone number": personalPhoneNumber,
         "salary": salary,
       };
+      console.log('Data to be inserted:', data);
 
       const docRef = await firestore.collection('Employee').add(data);
       return res.status(200).json({ id: docRef.id });
