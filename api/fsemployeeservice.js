@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
       console.log('Data to be inserted:', req.body.fields);
 
       const data = {
-        "First Name": firstName,
+        "First name": firstName,
         "Last name": lastName,
         "Role": role,
         "Phone": phone,
