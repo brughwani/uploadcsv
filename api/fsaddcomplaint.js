@@ -60,7 +60,7 @@ module.exports = async (req, res) => {
     console.log('Data to be inserted:', data);
 
     // Insert data into Firestore
-    const docRef = await firestore.collection('complaints').add(data);
+    const docRef = await firestore.collection('Service').add(data);
 
     console.log('Document written with ID:', docRef.id);
 
