@@ -38,8 +38,8 @@ module.exports = async (req, res) => {
       }
 
       const {
-        'First Name': firstName,
-        'Last Name': lastName,
+        'First name': firstName,
+        'Last name': lastName,
         'Role': role,
         'Phone Number': phone,
         'Password': password,
