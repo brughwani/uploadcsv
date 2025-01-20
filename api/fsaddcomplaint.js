@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
       "Brand": req.body.fields['Brand'],
       "Category": req.body.fields['Category'],
       "Product name": req.body.fields['Product name'],
-      "purchase date": new Date(req.body.fields['purchase date']),
+      "Purchase date": new Date(req.body.fields['Purchase date']),
       "warranty expiry date": new Date(req.body.fields['warranty expiry date']),
       "Complain/Remark": req.body.fields['Complain/Remark'],
       "Request Type": req.body.fields['Request Type'],
