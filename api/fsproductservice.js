@@ -55,7 +55,7 @@ if (!admin.apps.length) {
       const productsByBrand = {};
       let response = {};
   
-      const records = await firestore.collection('Products').get();
+  //    const records = await firestore.collection('Products').get();
       const snapshot = await firestore.collection('Products').get();
       snapshot.forEach(doc => {
         const data = doc.data();
