@@ -1,4 +1,4 @@
-// const { Firestore } = require('@google-cloud/firestore');
+//const { Firestore } = require('@google-cloud/firestore');
 
 // // Initialize Firestore
 // const firestore = new Firestore();
@@ -16,6 +16,9 @@ if (!admin.apps.length) {
     credential: admin.credential.cert(serviceAccount),
   });
 }
+ const firestore = admin.firestore();
+
+
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
